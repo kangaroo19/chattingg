@@ -4,10 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
     <title>Document</title>
 </head>
 <body>
-    <div class="wrapper">
+    <!-- 첫번째화면(main-window)에서 넘어가면
+    main window none으로 처리하고 chatting window로 넘어가는걸로 -->
+    <div id="window">
+        <div id="main-window">
+            <div class="title-container">
+                <div class="main-title">WELCOME</div>
+            </div>
+            <div class="char-container">
+                <img src="img/주황버섯.gif" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- <div class="wrapper">
         <div class="user-container">
             대화명: <input type="text" id="nickname">
         </div>
@@ -18,7 +32,7 @@
             <input type="text" class="chatting-input">
             <button class="send-button">전송</button>
         </div>
-    </div>
+    </div> -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/chat.js"></script>
 </body>

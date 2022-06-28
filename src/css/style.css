@@ -1,0 +1,34 @@
+body{
+    
+}
+#main-window{
+    position: relative;
+    margin:0 auto;
+    border:1px solid black;
+    width:100%;
+    height:550px;
+    top:140px;
+    
+    
+}
+.title-container{
+    border:1px solid black;
+    width:45%;
+    margin:0 auto;
+    margin-top:20px;
+    height:180px;
+    line-height: 180px;
+}
+.main-title{
+    font-size: 2.7rem;
+    text-align: center;
+}
+img{
+    width: 90px;
+    height:80px;
+}
+@media only screen and (min-width:1200px){
+    #main-window{
+        max-width:1200px;
+    }
+}

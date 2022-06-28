@@ -18,8 +18,10 @@ sendButton.addEventListener("click",()=>{
 
 socket.on("chatting",(data)=>{
     const li=document.createElement("li")
-    li.innerText=`${data.name}님의- ${data.msg}`
-    chatList.appendChild(li)
+    if(data.msg!==""){
+        li.innerText=`${data.name}님의- ${data.msg}`
+        chatList.appendChild(li)
+    }
 })
 
 console.log(socket)
