@@ -14,8 +14,8 @@
     width:400px;
     margin:0 auto;
     margin-top:20px;
-    height:160px;
-    line-height: 160px;
+    height:140px;
+    line-height: 140px;
 }
 .main-title{
     font-size: 2.7rem;
@@ -26,20 +26,27 @@
     height:270px;
     border:1px solid black;
     margin:auto;
-    margin-top:20px;
+    margin-top:40px;
+}
+.char-select-name{
     display: flex;
+}
+.char-desc{
+    border:1px solid black;
+    text-align: center;
+    margin: 10px 10px 0px 10px;
 }
 .char-select{
     border:1px solid black;
     width:450px;
     height:200px;
-    margin:30px 10px;
+    margin:15px 10px;
 }
 .char-name{
     border:1px solid black;
     width:200px;
     height:200px;
-    margin:30px 10px;
+    margin:15px 10px;
 }
 .char{
     border:1px solid black;
