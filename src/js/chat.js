@@ -25,4 +25,5 @@ socket.on("chatting",(data)=>{
     }
 })
 
-console.log(socket)
+
+

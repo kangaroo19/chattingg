@@ -1,13 +1,13 @@
-
-#main-window{
+#window{
     position: relative;
     margin:0 auto;
     border:1px solid black;
     width:100%;
     height:550px;
     top:140px;
-    
-    
+}
+#main-window{
+   
 }
 .title-container{
     border:1px solid black;
@@ -52,6 +52,7 @@
     border:1px solid black;
     width:70px;
     height:60px;
+    margin:8px;
 }
 .first-row{
     display: flex;
@@ -63,15 +64,23 @@ img{
     width: 70px;
     height:60px;
 }
+#mine{
+    border:1px solid black;
+    width:100px;
+    height:100px;
+}
+.none{
+    display: none;
+}
 @media screen and (max-width:830px){
-    #main-window{
+    #window{
         top:120px;
         width:100%;
         height:500px;
     }
 }
 @media screen and (min-width:1200px){
-    #main-window{
+    #window{
         top:100px;
         max-width: 1200px;
     }
