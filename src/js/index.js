@@ -2,32 +2,30 @@ const mushroom=document.querySelector("#char1")
 const nameInput=document.querySelector("#nameinput")
 const startButton=document.querySelector("#startbutton")
 const mainWindow=document.querySelector("#main-window")
-const char1=document.querySelector("#char1")
-const char2=document.querySelector("#char2")
+const char=document.querySelector(".char")
 const chattingWindow=document.querySelector("#chatting-window")
-let myName=""
 let img=["주황버섯.gif","파란버섯.gif"]
-const mine=document.querySelector("#mine")
-const mineImg=document.querySelector("mine-img")
-const mineName=document.querySelector("mine-name")
+const array=['스포아','빨간달팽이','슬라임','리본돼지','주황버섯','초록버섯','파란버섯','뿔버섯']
 
-char1.addEventListener("click",()=>{
-    nameInput.value="주황버섯" //디폴트값
-    
-})
-console.dir(nameInput)
-char2.addEventListener("click",()=>{
-    nameInput.value="파란버섯" //디폴트값
-})
-startButton.addEventListener("click",()=>{
-    if(nameInput.value===""){
-        alert("plz enter name")
-    }
-    else{
-        mainWindow.classList.add("none")
-        chattingWindow.classList.remove("none")
-        const name=nameInput.value
+
+function charClick(e){ //클릭한 아이디값 가져오는 함수
+    let myChar=e
+    let charId=e.getAttribute('id')
+    let number=charId.substring(4,charId.length)
+    let charName=array[number-1]
+    nameInput.value=charName
+    startButton.addEventListener("click",(event)=>{
+        if(nameInput.value===""){
+            alert("plz enter name")
+        }
+        else{
+            mainWindow.classList.add("none")
+            chattingWindow.classList.remove("none")
+                   
+           
+            
+        }
         
-    }
-    
-})
+    })    
+}
+
