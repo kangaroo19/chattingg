@@ -12,7 +12,7 @@
     <!-- 첫번째화면(main-window)에서 넘어가면
     main window none으로 처리하고 chatting window로 넘어가는걸로 -->
     <div id="window" >
-        <div id="main-window" class="none">
+        <div id="main-window">
             <div class="title-container">
                 <div class="main-title">어서오세요</div>
             </div>
@@ -40,7 +40,7 @@
                     </div>
             </div>
         </div>
-        <div id="chatting-window" >
+        <div id="chatting-window" class="none">
            <div class="chatting-container">
             <div class="game-window">
                 <div class="card" id="card1"></div>
@@ -76,7 +76,30 @@
 
             </div>
             <div class="char-chatting-window">
-                <div class="char-window"></div>
+                <div class="char-window">
+                    <div class="entered-char" id="first-char">
+                        <div class="entered-char-img"></div>
+                        <div class="entered-char-name"></div>
+                        <div class="entered-char-score"></div>
+                    </div>
+                    <div class="entered-char" id="second-char">
+                        <div class="entered-char-img"></div>
+                        <div class="entered-char-name"></div>
+                        <div class="entered-char-score"></div>
+                    </div>
+                    <div class="entered-char" id="third-char">
+                        <div class="entered-char-img"></div>
+                        <div class="entered-char-name"></div>
+                        <div class="entered-char-score"></div>
+                    </div>
+                    <div class="entered-char" id="fourth-char">
+                        <div class="entered-char-img"></div>
+                        <div class="entered-char-name"></div>
+                        <div class="entered-char-score"></div>
+                    </div>
+
+                </div>
+                <div class="gamestart">START</div>
                 <div class="chat-window"></div>
             </div>
            </div>

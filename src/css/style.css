@@ -149,7 +149,7 @@ img{
 }
 .char-chatting-window{
     margin:20px;
-    border:1px solid black;
+    
     width:465px;
     height:547px;
     margin-left:30px;
@@ -157,14 +157,60 @@ img{
 .char-window{
     margin:0 auto;
     border:1px solid black;
-    width:320px;
+    width:470px;
     height:200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.entered-char{
+    width:100px;
+    height:190px;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .chat-window{
     margin:0 auto;
+    margin-top:15px;
     border:1px solid black;
-    width:320px;
-    height:330px;
+    width:470px;
+    height:284px;
+}
+.entered-char-img{
+    margin:auto 0;
+    width:95px;
+    height:120px;
+    border:1px solid black;
+}
+.entered-char-name{
+    margin:auto 0;
+    width:95px;
+    height:30px;
+    border:1px solid black;
+}
+.entered-char-score{
+    margin:auto 0;
+    width:95px;
+    height:30px;
+    border:1px solid black;
+}
+#first-char{
+    margin-left:3px;
+}
+#fourth-char{
+    margin-right:3px;
+}
+.gamestart{
+    margin-top:15px;
+    margin-left:370px;
+    width:100px;
+    height:35px;
+    border:1px solid black;
+    line-height: 35px;
+    text-align: center;
 }
 @font-face {
     font-family: 'KOTRAHOPE';
