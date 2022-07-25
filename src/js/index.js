@@ -65,7 +65,7 @@ function charClick(e){ //클릭한 아이디값 가져오는 함수
             charImg2.src=data.img
         }
         //charImg1.src=array[number-1]
-        // charImg.style.width='87px'
+        // charImg.style.width='87px
         // charImg.style.height='75px'
         // charImg.style.marginTop='15px'
         
