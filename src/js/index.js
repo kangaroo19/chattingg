@@ -72,7 +72,7 @@ function charClick(e){ //클릭한 아이디값 가져오는 함수
     })
 }
 //이미지반복 안되게
-//순서대로 입장
+//순서대로 입장2
 
 startButton.addEventListener("click",()=>{
     if(nameInput.value===""){ //이름 정하지 않고 시작했을시 오류창
