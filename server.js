@@ -21,6 +21,12 @@ ws.on('connection',function connect(websocket,req){ //startbutton 클릭시 연�
                 })
                 sendAllUsers()
                 break
+            case 'send_message':
+                All_WS.forEach((element,index)=>{
+                    let data={'code':'chat_message','msg':message.msg,'sender_name':message.name}
+                    element.ws.send(JSON.stringify(data))
+                })
+                break;
             }
             
     })
