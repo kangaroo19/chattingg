@@ -1,0 +1,232 @@
+body{
+    background-color: rgba(124, 119, 119,0.5);
+}
+#window{
+    position: relative;
+    margin:0 auto;
+    border:1px solid black;
+    border-radius: 30px;
+    width:1198px;
+    height:550px;
+    top:140px;
+    background-image: url('../img/단풍.png');
+    background-size: 100px;
+    background-image: repeat;
+    margin-top:-30px;
+}
+#main-widow{
+    border:1px solid black;
+    
+    z-index: 999;
+}
+
+.title-container{
+    border:1px solid black;
+    width:400px;
+    margin:0 auto;
+    margin-top:20px;
+    height:140px;
+    line-height: 140px;
+    background-color: white;
+}
+.main-title{
+    font-size: 2.7rem;
+    text-align: center;
+    font-family: 'KOTRAHOPE';
+}
+.char-container{
+    background-color: white;
+    width:600px;
+    height:270px;
+    border:1px solid black;
+    margin:auto;
+    margin-top:40px;
+}
+.char-select-name{
+    display: flex;
+}
+.char-desc{
+    border:1px solid black;
+    text-align: center;
+    margin: 10px 10px 0px 10px;
+}
+.char-select{
+    border:1px solid black;
+    width:430px;
+    height:200px;
+    margin:15px 10px;
+}
+.char-name{
+    border:1px solid black;
+    width:156px;
+    height:200px;
+    margin:15px 10px;
+    margin-left:0
+}
+#nameinput{
+    width:140px;
+}
+.char{
+    border:3px solid white;
+    width:75px;
+    height:75px;
+    margin:8px;
+    margin-left:20px;
+    background-color: rgb(219, 89, 49);
+    border-radius: 10px;
+}
+.char:hover{
+    background-color: rgb(91, 230, 233);
+    transition: 1s all
+}
+.first-row{
+    display: flex;
+}
+.second-row{
+    display:flex;
+}
+#char1>img,
+#char2>img{
+    margin-left:5px;
+    margin-top:10px;
+    width:54px;
+    height:47px;
+}
+#char3>img,
+#char4>img,
+#char5>img,
+#char6>img,
+#char7>img,
+#char8>img{
+    margin-top:5px;
+    
+}
+img{
+    
+    width: 70px;
+    height:60px;
+}
+
+.none{
+    display: none;
+}
+/* @media screen and (max-width:800px){
+    #window{
+        top:120px;
+        width:100%;
+        height:500px;
+    }
+} */
+/* @media screen and (min-width:1200px){
+    #window{
+        top:100px;
+        max-width: 1200px;
+    }
+} */
+#chatting-window{
+    
+    
+    background-color: white;
+    border-radius: 10px;
+}
+.chatting-container{
+    display: flex;
+}
+.game-window{
+    margin:20px;
+    margin-left:30px;
+    width:55%;
+    height:547px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+.card{
+    border:1px solid black;
+    width:95px;
+    height:100px;
+}
+.char-chatting-window{
+    margin:20px;
+    
+    width:465px;
+    height:547px;
+    margin-left:30px;
+}
+.char-window{
+    margin:0 auto;
+    border:1px solid black;
+    width:470px;
+    height:200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.entered-char{
+    width:100px;
+    height:190px;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.chat-window-container{
+    margin:0 auto;
+    margin-top:15px;
+    border:1px solid black;
+    width:470px;
+    height:284px;
+}
+#chat-window{
+    margin:0 auto;
+    width:470px;
+    height:250px;
+    border-bottom:1px solid black;
+}
+#chat-input-container{
+    margin:0 auto;
+}
+#chat-input{
+    width:400px;
+}
+.entered-char-img{
+    margin:auto 0;
+    width:95px;
+    height:120px;
+    border:1px solid black;
+}
+.entered-char-name{
+    margin:auto 0;
+    width:95px;
+    height:30px;
+    border:1px solid black;
+}
+.entered-char-score{
+    margin:auto 0;
+    width:95px;
+    height:30px;
+    border:1px solid black;
+}
+#first-char{
+    margin-left:3px;
+}
+#fourth-char{
+    margin-right:3px;
+}
+.gamestart{
+    margin-top:15px;
+    margin-left:370px;
+    width:100px;
+    height:35px;
+    border:1px solid black;
+    line-height: 35px;
+    text-align: center;
+}
+@font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
