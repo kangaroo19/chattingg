@@ -1,24 +1,13 @@
 
 
-const path = require("path");
-const express = require('express');
-const app=express()
-app.use("/",(req,res)=>{
-    res.sendFile(path.join(__dirname,'./index.html'))
-})
-const HTTPServer=app.listen(8008,()=>{
-    console.log('server is open 8008')
-})
 const WebSocket=require('ws')
 const ws=new WebSocket.Server({port:8080})
-// const ws=new WebSocket.Server(
-//     {
-//         server:HTTPServer,
-        
-//     }
-// )
+
+
 let user_id=0
 let All_WS=[] //객체가 아닌 배열형태임에 유의
+
+//원래는 ws
 ws.on('connection',function connect(websocket,req){ //startbutton 클릭시 연결됨
     console.log('new user')
     user_id++
