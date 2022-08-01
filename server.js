@@ -2,15 +2,15 @@ const express=require('express')
 const app=express()
 
 app.use('/',function(req,res){
-    res.sendFile(__dirname='./index.html')
+    res.sendFile(__dirname+'./index.html')
 })
 
-app.listen(8080)
+app.listen(8081)
 
 
 
 const WebSocket=require('ws')
-const ws=new WebSocket.Server({port:8081})
+const ws=new WebSocket.Server({port:8080})
 
 
 let user_id=0
