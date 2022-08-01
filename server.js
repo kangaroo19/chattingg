@@ -1,5 +1,4 @@
-const WebSocket=require('ws')
-const ws=new WebSocket.Server({port:9000})
+
 
 const path = require("path");
 const express = require('express');
