@@ -33,7 +33,7 @@ function charClick(e){
     charInfo=charInfo1
 }
 function connect(){
-    websocket=new WebSocket("ws://localhost:8004")
+    websocket=new WebSocket("ws://172.30.1.15:8004")
     websocket.onmessage=function(e){
         let message=JSON.parse(e.data)
         switch(message.code){
