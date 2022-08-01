@@ -1,5 +1,5 @@
 const WebSocket=require('ws')
-const ws=new WebSocket.Server({port:8000})
+const ws=new WebSocket.Server({port:8080})
 
 let user_id=0
 let All_WS=[] //객체가 아닌 배열형태임에 유의
