@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD:index.php
+
     <link rel="stylesheet" href="css/style1.css">
-=======
+
     <link rel="stylesheet" href="css/ssss.css">
->>>>>>> 15a1d6cc60159f8469b980dbb9e7ea04a76fddd8:index.html
+
+    <link rel="stylesheet" href="css/ssss.css">
+
     <link rel="stylesheet" href="css/reset.css">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -124,6 +126,7 @@
         </div>
     </div>
 <<<<<<< HEAD:index.php
+<<<<<<< HEAD:index.php
     <!-- <div class="wrapper">
         <div class="user-container">
             대화명: <input type="text" id="nickname">
@@ -142,6 +145,8 @@
     <!-- <script src="js/index.js"></script> -->
     <script src="js/app.js"></script>
 =======
+=======
+>>>>>>> 15a1d6cc60159f8469b980dbb9e7ea04a76fddd8:index.html
     
     <script src="js/index.js"></script>
 >>>>>>> 15a1d6cc60159f8469b980dbb9e7ea04a76fddd8:index.html

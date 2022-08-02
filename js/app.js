@@ -34,7 +34,11 @@ function charClick(e){
 }
 function connect(){
 <<<<<<< HEAD:js/app.js
+<<<<<<< HEAD:js/app.js
     websocket=new WebSocket("ws://localhost:8080")
+=======
+    websocket=new WebSocket("ws://localhost:8081")
+>>>>>>> 15a1d6cc60159f8469b980dbb9e7ea04a76fddd8:js/index.js
 =======
     websocket=new WebSocket("ws://localhost:8081")
 >>>>>>> 15a1d6cc60159f8469b980dbb9e7ea04a76fddd8:js/index.js
