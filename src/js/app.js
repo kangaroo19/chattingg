@@ -121,11 +121,12 @@ function connect(){
                     charImg4.src=data.img
                     charName4.innerHTML=data.name
                 }
-                socket.on('chatmessage',(data)=>{
-                    $('#chat-window').append(`<div>
-                     ${data.name}:${data.msg}
-                    </div>`)
-                })
+                
+        })
+        socket.on('chatmessage',(data)=>{
+            $('#chat-window').append(`<div>
+             ${data.name}:${data.msg}
+            </div>`)
         })
 
 }
