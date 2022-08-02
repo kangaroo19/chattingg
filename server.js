@@ -1,25 +1,49 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 const WebSocket=require('ws')
 const ws=new WebSocket.Server({port:9000})
 
 const path = require("path");
 const express = require('express');
+=======
+const express=require('express')
+>>>>>>> parent of 1d6f64e (123)
 const app=express()
 app.use("/",(req,res)=>{
-    res.sendFile(path.join(__dirname,'./index.html'))
+    res.sendFile('./index.php')
 })
-const HTTPServer=app.listen(8008,()=>{
-    console.log('server is open 8008')
+const ws=app.listen(8080,()=>{
+    console.log("Server is open")
+=======
+const express=require('express')
+const app=express()
+
+app.use('/',function(req,res){
+    res.sendFile(__dirname+'./index.html')
+>>>>>>> 15a1d6cc60159f8469b980dbb9e7ea04a76fddd8
 })
+
+app.listen(8081)
+
+
+
 const WebSocket=require('ws')
+<<<<<<< HEAD
+//const ws=new WebSocket.Server({port:8080})
+const webSocketServer=new wsModule.Server(
+    {
+        server:HTTPServer,
+    }
+)
+=======
 const ws=new WebSocket.Server({port:8080})
-// const ws=new WebSocket.Server(
-//     {
-//         server:HTTPServer,
-        
-//     }
-// )
+
+
+>>>>>>> 15a1d6cc60159f8469b980dbb9e7ea04a76fddd8
 let user_id=0
 let All_WS=[] //객체가 아닌 배열형태임에 유의
+
+//원래는 ws
 ws.on('connection',function connect(websocket,req){ //startbutton 클릭시 연결됨
     console.log('new user')
     user_id++
