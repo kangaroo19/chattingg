@@ -2,7 +2,8 @@ const nameInput=document.querySelector('#nameinput')
 const startButton=document.querySelector('#startbutton')
 const mainWindow=document.querySelector('#main-window')
 const chattingWindow=document.querySelector('#chatting-window')
-const chatInput=document.querySelector('#chat-input')
+const chatForm=document.querySelector('#chatForm')
+const chatInput=document.querySelector('#chatForm input')
 const chatWindow=document.querySelector('#chat-window')
 const chatInputSend=document.querySelector('#chat-input-send')
 const charImg1=document.querySelector('#char-img-1')
@@ -104,7 +105,7 @@ function connect(){
     const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':null}
     socket.emit('chatting',data)
     socket.on('sendname',(data)=>{
-                console.log(data.name)
+                MY_USER_ID=data.user_id
                 if(data.user_id===1){
                     charImg1.src=data.img
                     charName1.innerHTML=data.name
@@ -126,13 +127,17 @@ function connect(){
         })
         socket.on('chatmessage',(data)=>{
             $('#chat-window').append(`<div>
-             ${data.name}:${data.msg}
-            </div>`)
-            chatInput.value=''
+            [${data.name}]:${data.msg}
+           </div>`)
+           chatInput.value=''
         })
 
 }
-
+socket.on('myuserid',(data)=>{
+    $('#chat-window').append(`<div>
+    [server]:${data.name}님이 접속했습니다.
+    </div>`)
+})
 startButton.addEventListener('click',()=>{
     charInfo.name=nameInput.value
     if(charInfo!=='' && nameInput.value!==''){
@@ -142,14 +147,13 @@ startButton.addEventListener('click',()=>{
     }
 })
 
+const toDoInput=document.querySelector("#todo-form input");
 
-
-chatInputSend.addEventListener('click',sendMessage)
+chatForm.addEventListener('submit',sendMessage)
 function sendMessage(e){
     e.preventDefault()
     let message=chatInput.value
     let data={'name':charInfo.name,'user_id':MY_USER_ID,'msg':message}
-    console.log(data)
     socket.emit('sendmessage',data)
 }
 

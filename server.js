@@ -70,6 +70,7 @@ io.on("connection",function connect(socket,req){
         //console.log(data.name)
         user_id++
         data.user_id=user_id
+        io.emit('myuserid',data)
         ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id})
         ALL_US.forEach((element,index)=>{
             io.emit('sendname',element)
