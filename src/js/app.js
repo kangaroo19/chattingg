@@ -104,7 +104,7 @@ function connect(){
     const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':null}
     socket.emit('chatting',data)
     socket.on('sendname',(data)=>{
-
+                console.log(data.name)
                 if(data.user_id===1){
                     charImg1.src=data.img
                     charName1.innerHTML=data.name
@@ -112,6 +112,7 @@ function connect(){
                 else if(data.user_id===2){
                     charImg2.src=data.img
                     charName2.innerHTML=data.name
+          
                 }
                 else if(data.user_id===3){
                     charImg3.src=data.img
@@ -120,17 +121,18 @@ function connect(){
                 else if(data.user_id===4){
                     charImg4.src=data.img
                     charName4.innerHTML=data.name
-                }
+                }   
                 
         })
         socket.on('chatmessage',(data)=>{
             $('#chat-window').append(`<div>
              ${data.name}:${data.msg}
             </div>`)
+            chatInput.value=''
         })
 
 }
-chatInputSend.addEventListener('click',sendMessage)
+
 startButton.addEventListener('click',()=>{
     charInfo.name=nameInput.value
     if(charInfo!=='' && nameInput.value!==''){
@@ -140,8 +142,14 @@ startButton.addEventListener('click',()=>{
     }
 })
 
-function sendMessage(){
+
+
+chatInputSend.addEventListener('click',sendMessage)
+function sendMessage(e){
+    e.preventDefault()
     let message=chatInput.value
-    let data={'name':MY_NAME,'user_id':MY_USER_ID,'msg':message}
+    let data={'name':charInfo.name,'user_id':MY_USER_ID,'msg':message}
+    console.log(data)
     socket.emit('sendmessage',data)
 }
+

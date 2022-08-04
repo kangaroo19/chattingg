@@ -67,6 +67,7 @@ let ALL_US=[]
 let ALL_MSG=[]
 io.on("connection",function connect(socket,req){
     socket.on('chatting',(data)=>{
+        //console.log(data.name)
         user_id++
         data.user_id=user_id
         ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id})
@@ -75,7 +76,6 @@ io.on("connection",function connect(socket,req){
         })
         socket.on('sendmessage',(data)=>{
             data={'name':data.name,'msg':data.msg,'user_id':data.user_id}
-            console.log(data.name)
             io.emit('chatmessage',data)
         })
     })
