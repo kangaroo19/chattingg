@@ -6,6 +6,7 @@ const chatForm=document.querySelector('#chatForm')
 const chatInput=document.querySelector('#chatForm input')
 const chatWindow=document.querySelector('#chat-window')
 const chatInputSend=document.querySelector('#chat-input-send')
+const gameStart=document.querySelector(".gamestart")
 const charImg1=document.querySelector('#char-img-1')
 const charImg2=document.querySelector('#char-img-2')
 const charImg3=document.querySelector('#char-img-3')
@@ -15,6 +16,9 @@ const charName1=document.querySelector('#char-name-1')
 const charName2=document.querySelector('#char-name-2')
 const charName3=document.querySelector('#char-name-3')
 const charName4=document.querySelector('#char-name-4')
+
+const player1=document.querySelector('#player1')
+const player2=document.querySelector('#player2')
 
 const array=['img/스포아.png','img/빨간달팽이.png','img/슬라임.png','img/리본돼지.png','img/주황버섯.png','img/초록버섯.png','img/파란버섯.png','img/뿔버섯.png']
 
@@ -102,7 +106,7 @@ function charClick(e){
 const socket=io()
 
 function connect(){
-    const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':null}
+    const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':null,'authority':false}
     socket.emit('chatting',data)
     socket.on('sendname',(data)=>{
                 MY_USER_ID=data.user_id
@@ -131,13 +135,25 @@ function connect(){
            </div>`)
            chatInput.value=''
         })
-
+        gameStart.addEventListener('click',()=>{
+            socket.emit('a',data)
+            socket.on('a1',(data)=>{
+                $('#chat-window').append(`<div>
+                [server]:${data.name}님이 준비했습니다.
+                </div>`)
+                
+            })
+        })
 }
 socket.on('myuserid',(data)=>{
     $('#chat-window').append(`<div>
     [server]:${data.name}님이 접속했습니다.
     </div>`)
 })
+
+
+
+
 startButton.addEventListener('click',()=>{
     charInfo.name=nameInput.value
     if(charInfo!=='' && nameInput.value!==''){

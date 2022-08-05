@@ -64,23 +64,31 @@ server.listen(PORT,()=>console.log("server is running "+PORT))
 
 let user_id=0
 let ALL_US=[]
-let ALL_MSG=[]
+let myid=null
 io.on("connection",function connect(socket,req){
     socket.on('chatting',(data)=>{
         //console.log(data.name)
         user_id++
         data.user_id=user_id
+        myid=user_id
         io.emit('myuserid',data)
-        ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id})
+        ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false})
         ALL_US.forEach((element,index)=>{
             io.emit('sendname',element)
         })
         socket.on('sendmessage',(data)=>{
-            data={'name':data.name,'msg':data.msg,'user_id':data.user_id}
+            data={'name':data.name,'msg':data.msg,'user_id':data.user_id,'authority':false}
             io.emit('chatmessage',data)
         })
+        socket.on('a',(data)=>{
+            data.user_id=myid
+            data.authority=true
+            console.log(ALL_US)
+            io.emit('a1',data)
+            
+        })
+        
     })
-    
 })
 
 

@@ -226,6 +226,10 @@ img{
     line-height: 35px;
     text-align: center;
 }
+.gamestart:hover{
+    background-color: black;
+    color:white
+}
 @font-face {
     font-family: 'KOTRAHOPE';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
