@@ -135,21 +135,39 @@ function connect(){
            </div>`)
            chatInput.value=''
         })
-        gameStart.addEventListener('click',()=>{
-            socket.emit('a',data)
-            socket.on('a1',(data)=>{
-                $('#chat-window').append(`<div>
-                [server]:${data.name}님이 준비했습니다.
-                </div>`)
-                
-            })
+        socket.on('a2',(data)=>{
+            $('#chat-window').append(`<div>
+            [server]:${data.name}님이 준비했습니다.
+            </div>`)
         })
-}
-socket.on('myuserid',(data)=>{
-    $('#chat-window').append(`<div>
-    [server]:${data.name}님이 접속했습니다.
-    </div>`)
+        // if(gameStart.innerText==='Ready'){
+        //     gameStart.addEventListener('click',()=>{
+        //         gameStart.innerText='Cancle'
+        //         socket.emit('a',data)
+        //         socket.on('a1',(data)=>{
+        //             $('#chat-window').append(`<div>
+        //             [server]:${data.name}님이 준비했습니다.
+        //             </div>`)
+        //             console.log(data)
+        //         }) 
+        //     })
+        // }
+        socket.on('myuserid',(data)=>{
+            $('#chat-window').append(`<div>
+            [server]:${data.name}님이 접속했습니다.
+            </div>`)
+        })
+        
+    }
+
+gameStart.addEventListener('click',()=>{
+    if(gameStart.innerText='Ready'){
+        gameStart.innerText='Cancle'
+        let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
+        socket.emit('a1',data)
+    }
 })
+
 
 
 
@@ -163,7 +181,6 @@ startButton.addEventListener('click',()=>{
     }
 })
 
-const toDoInput=document.querySelector("#todo-form input");
 
 chatForm.addEventListener('submit',sendMessage)
 function sendMessage(e){

@@ -72,6 +72,8 @@ io.on("connection",function connect(socket,req){
         data.user_id=user_id
         myid=user_id
         io.emit('myuserid',data)
+        io.emit('myuserid1',data)
+
         ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false})
         ALL_US.forEach((element,index)=>{
             io.emit('sendname',element)
@@ -82,12 +84,17 @@ io.on("connection",function connect(socket,req){
         })
         socket.on('a',(data)=>{
             data.user_id=myid
-            data.authority=true
+            ALL_US[myid-1].authority=data.authority
             console.log(ALL_US)
-            io.emit('a1',data)
+            io.emit('b',data)
             
         })
-        
+        socket.on('a1',(data)=>{
+            data.user_id=myid
+            ALL_US[myid-1].authority=data.authority
+            io.emit('a2',data)
+            console.log(ALL_US)
+        })
     })
 })
 
