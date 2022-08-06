@@ -95,6 +95,10 @@ io.on("connection",function connect(socket,req){
             io.emit('a2',data)
             console.log(ALL_US)
         })
+        socket.on('a2',(data)=>{
+            ALL_US[myid-1].authority=data.authority
+            io.emit('a3',data)
+        })
     })
 })
 

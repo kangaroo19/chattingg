@@ -140,6 +140,11 @@ function connect(){
             [server]:${data.name}님이 준비했습니다.
             </div>`)
         })
+        socket.on('a3',(data)=>{
+            $('#chat-window').append(`<div>
+            [server]:${data.name}님이 준비 취소 했습니다.
+            </div>`)
+        })
         socket.on('myuserid',(data)=>{
             $('#chat-window').append(`<div>
             [server]:${data.name}님이 접속했습니다.
@@ -154,7 +159,11 @@ gameStart.addEventListener('click',()=>{
         let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
         socket.emit('a1',data)
     }
-    
+    else{
+        gameStart.innerText='Ready'
+        let data1={'name':charInfo.name,'user_id':MY_USER_ID,'authority':false}
+        socket.emit('a2',data1)
+    }
 })
 
 
