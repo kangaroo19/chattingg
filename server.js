@@ -77,31 +77,32 @@ io.on("connection",function connect(socket,req){
         ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false})
         ALL_US.forEach((element,index)=>{
             io.emit('sendname',element)
+            
         })
+        console.log(ALL_US)
         socket.on('sendmessage',(data)=>{
             data={'name':data.name,'msg':data.msg,'user_id':data.user_id,'authority':false}
             io.emit('chatmessage',data)
         })
-        socket.on('a',(data)=>{
+       
+        socket.on('a1',(data)=>{ //준비버튼
             data.user_id=myid
-            ALL_US[myid-1].authority=data.authority
-            console.log(ALL_US)
-            io.emit('b',data)
-            
-        })
-        socket.on('a1',(data)=>{
-            data.user_id=myid
-            ALL_US[myid-1].authority=data.authority
+            console.log(data.user_id)
+            ALL_US[data.user_id-1].authority=data.authority
             io.emit('a2',data)
-            console.log(ALL_US)
         })
-        socket.on('a2',(data)=>{
+        socket.on('a2',(data)=>{ //준비버튼 취소
+            data.user_id=myid
             ALL_US[myid-1].authority=data.authority
             io.emit('a3',data)
         })
+        socket.emit('aa',data)
     })
 })
 
-
-
-
+//리본돼지 뿔버섯 순으로 들어왔을때 
+//리본돼지 -> userid:1
+//뿔버섯 -> userid:2 인데
+//뿔버섯 레디버튼 누르고 리본돼지 레디버튼 누르면 잘 안됨
+//myid부분이 잘못된듯
+//client 부분에서 all_us 활용해볼것

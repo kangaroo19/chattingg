@@ -104,20 +104,23 @@ function charClick(e){
 //     }
 // })
 const socket=io()
-
+const ALL_US=[]
 function connect(){
     const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':null,'authority':false}
     socket.emit('chatting',data)
     socket.on('sendname',(data)=>{
                 MY_USER_ID=data.user_id
+                console.log(data)
+                
                 if(data.user_id===1){
                     charImg1.src=data.img
                     charName1.innerHTML=data.name
+                    ALL_US[data.user_id-1]=data
                 }
                 else if(data.user_id===2){
                     charImg2.src=data.img
                     charName2.innerHTML=data.name
-          
+                    ALL_US[data.user_id-1]=data
                 }
                 else if(data.user_id===3){
                     charImg3.src=data.img
@@ -127,7 +130,7 @@ function connect(){
                     charImg4.src=data.img
                     charName4.innerHTML=data.name
                 }   
-                
+                console.log(ALL_US)
         })
         socket.on('chatmessage',(data)=>{
             $('#chat-window').append(`<div>
@@ -158,6 +161,7 @@ gameStart.addEventListener('click',()=>{
         gameStart.innerText='Cancle'
         let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
         socket.emit('a1',data)
+
     }
     else{
         gameStart.innerText='Ready'
@@ -187,4 +191,11 @@ function sendMessage(e){
     let data={'name':charInfo.name,'user_id':MY_USER_ID,'msg':message}
     socket.emit('sendmessage',data)
 }
+
+
+socket.on('aa',(data)=>{
+    if(data.user_id===3 || data.user_id===4){
+        gameStart.disabled=true
+    }
+})
 
