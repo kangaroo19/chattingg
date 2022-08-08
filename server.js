@@ -1,4 +1,3 @@
-
 // const WebSocket=require('ws')
 // const ws=new WebSocket.Server({port:9000})
 
@@ -67,7 +66,6 @@ let ALL_US=[]
 let myid=null
 io.on("connection",function connect(socket,req){
     socket.on('chatting',(data)=>{
-        //console.log(data.name)
         user_id++
         data.user_id=user_id
         myid=user_id
@@ -79,22 +77,37 @@ io.on("connection",function connect(socket,req){
             io.emit('sendname',element)
             
         })
-        console.log(ALL_US)
+        
         socket.on('sendmessage',(data)=>{
             data={'name':data.name,'msg':data.msg,'user_id':data.user_id,'authority':false}
             io.emit('chatmessage',data)
         })
-       
-        socket.on('a1',(data)=>{ //준비버튼
-            data.user_id=myid
+        socket.on('p1',(data)=>{
             console.log(data.user_id)
-            ALL_US[data.user_id-1].authority=data.authority
-            io.emit('a2',data)
+            ALL_US[data.user_id-1].authority=true
+            data.authority=true
+            data.user_id=1
+            io.emit('p1',data)
         })
-        socket.on('a2',(data)=>{ //준비버튼 취소
-            data.user_id=myid
-            ALL_US[myid-1].authority=data.authority
-            io.emit('a3',data)
+        socket.on('p2',(data)=>{
+            ALL_US[data.user_id-1].authority=false
+            data.authority=false
+            data.user_id=1
+            io.emit('p2',data)
+        })
+        socket.on('p3',(data)=>{
+            console.log(data.user_id)
+
+            ALL_US[data.user_id-1].authority=true
+            data.authority=true
+            data.user_id=2
+            io.emit('p3',data)
+        })
+        socket.on('p4',(data)=>{
+            ALL_US[data.user_id-1].authority=false
+            data.authority=false
+            data.user_id=2
+            io.emit('p4',data)
         })
         socket.emit('aa',data)
     })
