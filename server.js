@@ -84,7 +84,20 @@ io.on("connection",function connect(socket,req){
             io.emit('chatmessage',data)
         })
         socket.on('p',(data)=>{
+            if(data.user_id===1){
+                ALL_US[0].user_id=data.user_id
+                ALL_US[0].authority=true
+            }
+            else{
+                ALL_US[1].user_id=data.user_id
+                ALL_US[1].authority=true
+            }
             io.emit('p1',data)
+            if(ALL_US[0].authority===true && ALL_US[1].authority===true){
+                console.log(123)
+                io.emit('start',ALL_US)
+            }
+            
         })
         socket.on('pp',(data)=>{
             io.emit('pp1',data)

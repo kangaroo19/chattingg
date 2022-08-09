@@ -168,6 +168,11 @@ socket.on('pp1',(data)=>{
         player2Score.innerText='준비중'
     }
 })
+socket.on('start',(data)=>{
+    $('#chat-window').append(`<div>
+    [server]:게임시작
+    </div>`)
+})
 socket.on('myuserid',(data)=>{
     $('#chat-window').append(`<div>
     [server]:${data.name}님이 접속했습니다.
@@ -226,3 +231,4 @@ socket.on('aa',(data)=>{
         gameStart.disabled=true
     }
 })
+
