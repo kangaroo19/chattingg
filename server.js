@@ -69,6 +69,7 @@ io.on("connection",function connect(socket,req){
         user_id++
         data.user_id=user_id
         myid=user_id
+        sendUserId(user_id)
         io.emit('myuserid',data)
         io.emit('myuserid1',data)
 
@@ -82,35 +83,19 @@ io.on("connection",function connect(socket,req){
             data={'name':data.name,'msg':data.msg,'user_id':data.user_id,'authority':false}
             io.emit('chatmessage',data)
         })
-        socket.on('p1',(data)=>{
-            console.log(data.user_id)
-            ALL_US[data.user_id-1].authority=true
-            data.authority=true
-            data.user_id=1
+        socket.on('p',(data)=>{
             io.emit('p1',data)
         })
-        socket.on('p2',(data)=>{
-            ALL_US[data.user_id-1].authority=false
-            data.authority=false
-            data.user_id=1
-            io.emit('p2',data)
-        })
-        socket.on('p3',(data)=>{
-            console.log(data.user_id)
-
-            ALL_US[data.user_id-1].authority=true
-            data.authority=true
-            data.user_id=2
-            io.emit('p3',data)
-        })
-        socket.on('p4',(data)=>{
-            ALL_US[data.user_id-1].authority=false
-            data.authority=false
-            data.user_id=2
-            io.emit('p4',data)
+        socket.on('pp',(data)=>{
+            io.emit('pp1',data)
         })
         socket.emit('aa',data)
     })
+
+    function sendUserId(user_id){
+        let data={'user_id':user_id}
+        socket.emit('aaa',data)
+    }
 })
 
 //리본돼지 뿔버섯 순으로 들어왔을때 

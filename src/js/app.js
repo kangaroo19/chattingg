@@ -108,92 +108,96 @@ const ALL_US=[]
 let player1=[]
 let player2=[]
 function connect(){
-    const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':null,'authority':false}
+    socket.on('aaa',(data)=>{
+        MY_USER_ID=data.user_id
+    })
+    const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':MY_USER_ID,'authority':false}
+    console.log(data)
     socket.emit('chatting',data)
     socket.on('sendname',(data)=>{
-                
-                if(data.user_id===1){
-                    charImg1.src=data.img
-                    charName1.innerHTML=data.name
-                    ALL_US[data.user_id-1]=data
-                    player1=ALL_US[0]
-                    console.log(player1)
-                }
-                else if(data.user_id===2){
-                    charImg2.src=data.img
-                    charName2.innerHTML=data.name
-                    ALL_US[data.user_id-1]=data
-                    player2=ALL_US[1]
-                    console.log(player2)
-                }
-                else if(data.user_id===3){
-                    charImg3.src=data.img
-                    charName3.innerHTML=data.name
-                }
-                else if(data.user_id===4){
-                    charImg4.src=data.img
-                    charName4.innerHTML=data.name
-                }   
-                
-        })
-        socket.on('chatmessage',(data)=>{
-            $('#chat-window').append(`<div>
-            [${data.name}]:${data.msg}
-           </div>`)
-           chatInput.value=''
-        })
-        socket.on('p1',(data)=>{
-            console.log(data)
-            $('#chat-window').append(`<div>
-            [server]:${data.name}님이 준비했습니다.
-            </div>`)
-        })
-        socket.on('p2',(data)=>{
-            $('#chat-window').append(`<div>
-            [server]:${data.name}님이 준비 취소 했습니다.
-            </div>`)
-        })
-        socket.on('p3',(data)=>{
-            console.log(data)
-            $('#chat-window').append(`<div>
-            [server]:${data.name}님이 준비했습니다.
-            </div>`)
-        })
-        socket.on('p4',(data)=>{
-            $('#chat-window').append(`<div>
-            [server]:${data.name}님이 준비 취소 했습니다.
-            </div>`)
-        })
-        socket.on('myuserid',(data)=>{
-            $('#chat-window').append(`<div>
-            [server]:${data.name}님이 접속했습니다.
-            </div>`)
-        })
-        
-    }
-
-gameStart.addEventListener('click',()=>{
-    if(gameStart.innerText==='Ready'){
-        gameStart.innerText='Cancle'
-        console.log(player1,player2)
-        if(player1.user_id===1){
-            socket.emit('p1',player1)
+        if(data.user_id===1){
+            charImg1.src=data.img
+            charName1.innerHTML=data.name
+            ALL_US[data.user_id-1]=data
+            player1=ALL_US[0]  
         }
-        else if(player2.user_id===2){
-            socket.emit('p3',player2)
+        else if(data.user_id===2){
+            charImg2.src=data.img
+            charName2.innerHTML=data.name
+            ALL_US[data.user_id-1]=data
+            player2=ALL_US[1]   
+        }
+        else if(data.user_id===3){
+            charImg3.src=data.img
+            charName3.innerHTML=data.name
+        }
+        else if(data.user_id===4){
+            charImg4.src=data.img
+            charName4.innerHTML=data.name
+        }
+
+    })
+}
+socket.on('chatmessage',(data)=>{
+    $('#chat-window').append(`<div>
+    [${data.name}]:${data.msg}
+    </div>`)
+    chatInput.value=''
+})
+socket.on('p1',(data)=>{
+    console.log(data)
+    $('#chat-window').append(`<div>
+    [server]:${data.name}님이 준비했습니다.
+    </div>`)
+    if(data.user_id===1){
+        player1Score.innerText='준비'
+    }
+    else{
+        player2Score.innerText='준비'
+    }
+})
+socket.on('pp1',(data)=>{
+    console.log(data)
+    $('#chat-window').append(`<div>
+    [server]:${data.name}님이 준비 취소 했습니다.
+    </div>`)
+    if(data.user_id===1){
+        player1Score.innerText='준비중'
+    }
+    else{
+        player2Score.innerText='준비중'
+    }
+})
+socket.on('myuserid',(data)=>{
+    $('#chat-window').append(`<div>
+    [server]:${data.name}님이 접속했습니다.
+    </div>`)
+})
+gameStart.addEventListener('click',()=>{
+    if(ALL_US.length===2){
+        if(gameStart.innerText==='Ready'){
+            gameStart.innerText='Cancle'
+            // if(MY_USER_ID===1){
+            //     let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
+            //     socket.emit('p1',data)
+            // }
+            // else if(MY_USER_ID===2){
+            //     let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
+            //     socket.emit('p2',data)
+            // }
+            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
+            socket.emit('p',data)
+        }
+        else if(gameStart.innerText==='Cancle'){
+            gameStart.innerText='Ready'
+            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':false}
+            socket.emit('pp',data)
         }
     }
     else{
-        gameStart.innerText='Ready'
-        if(player1.user_id===1){
-            socket.emit('p2',player1)
-        }
-        else if(player2.user_id==2){
-            socket.emit('p4',player2)
-        }
+        alert('no')
     }
-})
-
+}) 
 
 
 
