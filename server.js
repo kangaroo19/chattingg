@@ -102,6 +102,9 @@ io.on("connection",function connect(socket,req){
         socket.on('pp',(data)=>{
             io.emit('pp1',data)
         })
+        socket.on('card',(data)=>{
+            console.log(data)
+        })
         socket.emit('aa',data)
     })
 
@@ -117,3 +120,4 @@ io.on("connection",function connect(socket,req){
 //뿔버섯 레디버튼 누르고 리본돼지 레디버튼 누르면 잘 안됨
 //myid부분이 잘못된듯
 //client 부분에서 all_us 활용해볼것
+

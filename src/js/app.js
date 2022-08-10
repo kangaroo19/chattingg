@@ -37,6 +37,39 @@ function charClick(e){
     charInfo1.name=nameInput.value
     charInfo=charInfo1
 }
+
+function generateRandom(min,max){
+    let ranNum=Math.floor(Math.random()*(max-min+1))+min
+    return ranNum
+}
+function setCards(){
+    cards=[
+        'img/돼지.png','img/돼지.png',
+        'img/드레이크.png','img/드레이크.png',
+        'img/레이스.png','img/레이스.png',
+        'img/로랑.png','img/로랑.png',
+        'img/루팡.png','img/루팡.png',
+        'img/리본돼지.png','img/리본돼지.png',
+        'img/엄티.png','img/엄티.png',
+        'img/옥토퍼스.png','img/옥토퍼스.png',
+        'img/와일드카고.png','img/와일드카고.png',
+        'img/우는파란버섯.png','img/우는파란버섯.png',
+        'img/이블아이.png','img/이블아이.png',
+        'img/커즈아이.png','img/커즈아이.png',
+        'img/콜드아이.png','img/콜드아이.png',
+        'img/파란달팽이.png','img/파란달팽이.png',
+        'img/뿔버섯.png','img/뿔버섯.png'
+    ]
+    const card2=document.querySelectorAll('.card2')
+    for(let i=0;i<30;i++){
+        let ran=generateRandom(0,29-i)
+        let img=cards.splice(ran,1)
+        //card2[i].src=img
+        return img
+}
+}
+
+
 // function connect(){
 
 //     websocket=new WebSocket("ws://localhost:8080")
@@ -112,7 +145,6 @@ function connect(){
         MY_USER_ID=data.user_id
     })
     const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':MY_USER_ID,'authority':false}
-    console.log(data)
     socket.emit('chatting',data)
     socket.on('sendname',(data)=>{
         if(data.user_id===1){
@@ -145,15 +177,19 @@ socket.on('chatmessage',(data)=>{
     chatInput.value=''
 })
 socket.on('p1',(data)=>{
-    console.log(data)
     $('#chat-window').append(`<div>
     [server]:${data.name}님이 준비했습니다.
     </div>`)
     if(data.user_id===1){
+        player1=data
         player1Score.innerText='준비'
+        console.log(player1)
     }
     else{
+        player2=data
         player2Score.innerText='준비'
+        console.log(player2)
+
     }
 })
 socket.on('pp1',(data)=>{
@@ -169,9 +205,24 @@ socket.on('pp1',(data)=>{
     }
 })
 socket.on('start',(data)=>{
-    $('#chat-window').append(`<div>
-    [server]:게임시작
-    </div>`)
+    let i=1
+    let interval=setInterval(()=>{
+        if(i<=3){
+            $('#chat-window').append(`<div>
+            [server]:${i}
+            </div>`)
+            i++
+        }
+        if(i===4){
+            $('#chat-window').append(`<div>
+            [server]:게임시작
+            </div>`)   
+            clearInterval(interval)
+        }
+    },1000)
+    //setCards()
+    player1Score.innerText=0
+    player2Score.innerText=0
 })
 socket.on('myuserid',(data)=>{
     $('#chat-window').append(`<div>
@@ -182,20 +233,12 @@ gameStart.addEventListener('click',()=>{
     if(ALL_US.length===2){
         if(gameStart.innerText==='Ready'){
             gameStart.innerText='Cancle'
-            // if(MY_USER_ID===1){
-            //     let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
-            //     socket.emit('p1',data)
-            // }
-            // else if(MY_USER_ID===2){
-            //     let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
-            //     socket.emit('p2',data)
-            // }
-            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true}
+            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true,'turn':false,'score':0}
             socket.emit('p',data)
         }
         else if(gameStart.innerText==='Cancle'){
             gameStart.innerText='Ready'
-            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':false}
+            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':false,'turn':false,'score':0}
             socket.emit('pp',data)
         }
     }
@@ -203,7 +246,6 @@ gameStart.addEventListener('click',()=>{
         alert('no')
     }
 }) 
-
 
 
 
@@ -231,4 +273,6 @@ socket.on('aa',(data)=>{
         gameStart.disabled=true
     }
 })
+
+
 
