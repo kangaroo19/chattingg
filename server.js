@@ -60,7 +60,7 @@ const PORT=process.env.PORT || 5005;
 
 
 server.listen(PORT,()=>console.log("server is running "+PORT))
-
+let ran=lottoNum()
 let user_id=0
 let ALL_US=[]
 let myid=null
@@ -102,9 +102,9 @@ io.on("connection",function connect(socket,req){
         socket.on('pp',(data)=>{
             io.emit('pp1',data)
         })
-        socket.on('card',(data)=>{
-            console.log(data)
-        })
+        console.log(ran)
+       socket.emit('rancard',ran)
+        
         socket.emit('aa',data)
     })
 
@@ -113,6 +113,21 @@ io.on("connection",function connect(socket,req){
         socket.emit('aaa',data)
     }
 })
+function lottoNum(){
+    let lotto=[]
+    let i=0;
+    while(i<30){
+        let n=Math.floor(Math.random()*30)
+        if(notSame(n)){
+            lotto.push(n)
+            i++
+        }
+    }
+    function notSame(n){
+        return lotto.every((e)=>n!==e)
+    }
+    return lotto
+}
 
 //리본돼지 뿔버섯 순으로 들어왔을때 
 //리본돼지 -> userid:1

@@ -38,36 +38,6 @@ function charClick(e){
     charInfo=charInfo1
 }
 
-function generateRandom(min,max){
-    let ranNum=Math.floor(Math.random()*(max-min+1))+min
-    return ranNum
-}
-function setCards(){
-    cards=[
-        'img/돼지.png','img/돼지.png',
-        'img/드레이크.png','img/드레이크.png',
-        'img/레이스.png','img/레이스.png',
-        'img/로랑.png','img/로랑.png',
-        'img/루팡.png','img/루팡.png',
-        'img/리본돼지.png','img/리본돼지.png',
-        'img/엄티.png','img/엄티.png',
-        'img/옥토퍼스.png','img/옥토퍼스.png',
-        'img/와일드카고.png','img/와일드카고.png',
-        'img/우는파란버섯.png','img/우는파란버섯.png',
-        'img/이블아이.png','img/이블아이.png',
-        'img/커즈아이.png','img/커즈아이.png',
-        'img/콜드아이.png','img/콜드아이.png',
-        'img/파란달팽이.png','img/파란달팽이.png',
-        'img/뿔버섯.png','img/뿔버섯.png'
-    ]
-    const card2=document.querySelectorAll('.card2')
-    for(let i=0;i<30;i++){
-        let ran=generateRandom(0,29-i)
-        let img=cards.splice(ran,1)
-        //card2[i].src=img
-        return img
-}
-}
 
 
 // function connect(){
@@ -144,6 +114,7 @@ function connect(){
     socket.on('aaa',(data)=>{
         MY_USER_ID=data.user_id
     })
+    
     const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':MY_USER_ID,'authority':false}
     socket.emit('chatting',data)
     socket.on('sendname',(data)=>{
@@ -205,22 +176,24 @@ socket.on('pp1',(data)=>{
     }
 })
 socket.on('start',(data)=>{
-    let i=1
+    let i=5
     let interval=setInterval(()=>{
-        if(i<=3){
+        if(i>0){
+            setCards()
             $('#chat-window').append(`<div>
             [server]:${i}
             </div>`)
-            i++
+            i--
         }
-        if(i===4){
+        if(i===0){
+            $('.card img').hide();
             $('#chat-window').append(`<div>
             [server]:게임시작
             </div>`)   
             clearInterval(interval)
         }
     },1000)
-    //setCards()
+    
     player1Score.innerText=0
     player2Score.innerText=0
 })
@@ -275,4 +248,40 @@ socket.on('aa',(data)=>{
 })
 
 
+
+function generateRandom(min,max){
+    let ranNum=Math.floor(data*(max-min+1))+min
+     return ranNum
+}
+
+
+let arr=null
+socket.on('rancard',(data)=>{//랜덤한값 서버로부터 받아옴
+    arr=data
+})
+
+function setCards(){
+    cards=[
+        'img/돼지.png','img/돼지.png',
+        'img/드레이크.png','img/드레이크.png',
+        'img/레이스.png','img/레이스.png',
+        'img/로랑.png','img/로랑.png',
+        'img/루팡.png','img/루팡.png',
+        'img/리본돼지.png','img/리본돼지.png',
+        'img/엄티.png','img/엄티.png',
+        'img/옥토퍼스.png','img/옥토퍼스.png',
+        'img/와일드카고.png','img/와일드카고.png',
+        'img/우는파란버섯.png','img/우는파란버섯.png',
+        'img/이블아이.png','img/이블아이.png',
+        'img/커즈아이.png','img/커즈아이.png',
+        'img/콜드아이.png','img/콜드아이.png',
+        'img/파란달팽이.png','img/파란달팽이.png',
+        'img/뿔버섯.png','img/뿔버섯.png'
+    ]
+    const card2=document.querySelectorAll('.card2')
+    for(let i=0;i<30;i++){
+        let img=cards[arr[i]]
+        card2[i].src=img
+    }
+}
 
