@@ -226,6 +226,12 @@ img{
     line-height: 35px;
     text-align: center;
 }
+/* .card{
+    background-image: url('../img/backcard.jpg');
+} */
+.backnone{
+    background-image: none;
+}
 /* .gamestart:hover{
     background-color: black;
     color:white
@@ -241,3 +247,5 @@ img{
 #hello{
     width:200px;
 }
+/* * {cursor: url(https://cur.cursors-4u.net/games/gam-4/gam305.ani), url(https://cur.cursors-4u.net/games/gam-4/gam305.png), auto !important;}  */
+body {cursor: url(http://www.rw-designer.com/cursor-extern.php?id=8646);}

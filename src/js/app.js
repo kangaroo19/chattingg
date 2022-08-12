@@ -16,12 +16,12 @@ const charName1=document.querySelector('#char-name-1')
 const charName2=document.querySelector('#char-name-2')
 const charName3=document.querySelector('#char-name-3')
 const charName4=document.querySelector('#char-name-4')
-
+const card=document.querySelectorAll('.card')
 const player1Score=document.querySelector('#player1-score')
 const player2Score=document.querySelector('#player2-score')
+const firstcard=document.querySelector('#card1')
 
 const array=['img/스포아.png','img/빨간달팽이.png','img/슬라임.png','img/리본돼지.png','img/주황버섯.png','img/초록버섯.png','img/파란버섯.png','img/뿔버섯.png']
-
 let websocket=null
 let MY_USER_ID=''
 let MY_NAME=''
@@ -37,9 +37,17 @@ function charClick(e){
     charInfo1.name=nameInput.value
     charInfo=charInfo1
 }
-
-
-
+function cardClick(e){
+    let cardId=e.getAttribute('id')
+    let cardImg=e.childNodes
+    $(cardImg).show()
+    let cardName=cardImg[0].currentSrc
+    e.style.backgroundImage=null
+}
+for(let i=0;i<30;i++){
+    card[i].style.backgroundImage="url('img/backcard.jpg')"
+    $(card[i].childNodes).hide()
+}
 // function connect(){
 
 //     websocket=new WebSocket("ws://localhost:8080")
@@ -176,21 +184,26 @@ socket.on('pp1',(data)=>{
     }
 })
 socket.on('start',(data)=>{
-    let i=5
+    
+    gameStart.disabled=true
+    let i=6
+    setCards()
     let interval=setInterval(()=>{
         if(i>0){
-            setCards()
+            --i
             $('#chat-window').append(`<div>
             [server]:${i}
             </div>`)
-            i--
         }
         if(i===0){
             $('.card img').hide();
             $('#chat-window').append(`<div>
             [server]:게임시작
-            </div>`)   
+            </div>`)
             clearInterval(interval)
+            for(let i=0;i<30;i++){
+                card[i].style.backgroundImage="url('img/backcard.jpg')"
+            }
         }
     },1000)
     
@@ -280,6 +293,8 @@ function setCards(){
     ]
     const card2=document.querySelectorAll('.card2')
     for(let i=0;i<30;i++){
+        card[i].style.backgroundImage=null
+        $(card[i].childNodes).show()
         let img=cards[arr[i]]
         card2[i].src=img
     }
