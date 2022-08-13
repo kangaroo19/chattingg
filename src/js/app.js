@@ -12,6 +12,8 @@ const charImg2=document.querySelector('#char-img-2')
 const charImg3=document.querySelector('#char-img-3')
 const charImg4=document.querySelector('#char-img-4')
 
+const gameWindow=document.querySelector('.game-window')
+
 const charName1=document.querySelector('#char-name-1')
 const charName2=document.querySelector('#char-name-2')
 const charName3=document.querySelector('#char-name-3')
@@ -37,12 +39,21 @@ function charClick(e){
     charInfo1.name=nameInput.value
     charInfo=charInfo1
 }
+
+
+
 function cardClick(e){
-    let cardId=e.getAttribute('id')
-    let cardImg=e.childNodes
-    $(cardImg).show()
-    let cardName=cardImg[0].currentSrc
-    e.style.backgroundImage=null
+    if(player1.authority===true && player2.authority===true){
+        let cardId=e.getAttribute('id')//id값 저장
+        let cardImg=e.childNodes
+        $(cardImg).show()
+        let cardName=cardImg[0].currentSrc
+        e.style.backgroundImage=null
+       
+    }
+    else{
+        alert('not ready')
+    }
 }
 for(let i=0;i<30;i++){
     card[i].style.backgroundImage="url('img/backcard.jpg')"
@@ -183,11 +194,10 @@ socket.on('pp1',(data)=>{
         player2Score.innerText='준비중'
     }
 })
-socket.on('start',(data)=>{
-    
+socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     gameStart.disabled=true
     let i=6
-    setCards()
+    setCards()//카드 랜덤하게
     let interval=setInterval(()=>{
         if(i>0){
             --i
@@ -206,7 +216,7 @@ socket.on('start',(data)=>{
             }
         }
     },1000)
-    
+    player1.turn=true
     player1Score.innerText=0
     player2Score.innerText=0
 })
@@ -219,17 +229,17 @@ gameStart.addEventListener('click',()=>{
     if(ALL_US.length===2){
         if(gameStart.innerText==='Ready'){
             gameStart.innerText='Cancle'
-            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true,'turn':false,'score':0}
+            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':true,'turn':false,'score':0,'chosecard':[],'count':0}
             socket.emit('p',data)
         }
         else if(gameStart.innerText==='Cancle'){
             gameStart.innerText='Ready'
-            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':false,'turn':false,'score':0}
+            let data={'name':charInfo.name,'user_id':MY_USER_ID,'authority':false,'turn':false,'score':0,'chosecard':[],'count':0}
             socket.emit('pp',data)
         }
     }
     else{
-        alert('no')
+        alert('not enough player')
     }
 }) 
 

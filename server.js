@@ -64,6 +64,8 @@ let ran=lottoNum()
 let user_id=0
 let ALL_US=[]
 let myid=null
+let player1=null
+let player2=null
 io.on("connection",function connect(socket,req){
     socket.on('chatting',(data)=>{
         user_id++
@@ -73,7 +75,7 @@ io.on("connection",function connect(socket,req){
         io.emit('myuserid',data)
         io.emit('myuserid1',data)
 
-        ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false})
+        ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false,'turn':false,'score':0,'chosecard':[],'count':0})
         ALL_US.forEach((element,index)=>{
             io.emit('sendname',element)
             
@@ -84,6 +86,7 @@ io.on("connection",function connect(socket,req){
             io.emit('chatmessage',data)
         })
         socket.on('p',(data)=>{
+            console.log(data)
             if(data.user_id===1){
                 ALL_US[0].user_id=data.user_id
                 ALL_US[0].authority=true
@@ -94,7 +97,7 @@ io.on("connection",function connect(socket,req){
             }
             io.emit('p1',data)
             if(ALL_US[0].authority===true && ALL_US[1].authority===true){
-                console.log(123)
+                ALL_US[0].turn=true
                 io.emit('start',ALL_US)
             }
             
@@ -106,6 +109,9 @@ io.on("connection",function connect(socket,req){
        socket.emit('rancard',ran)
         
         socket.emit('aa',data)
+        socket.on('chose',(data)=>{
+            socket.emit('chose1',data)
+        })    
     })
 
     function sendUserId(user_id){
