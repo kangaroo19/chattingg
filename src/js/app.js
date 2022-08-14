@@ -27,6 +27,9 @@ const array=['img/스포아.png','img/빨간달팽이.png','img/슬라임.png','
 let websocket=null
 let MY_USER_ID=''
 let MY_NAME=''
+let My_IMG=''
+let MY_TURN=false
+let MY_AU=false
 let charInfo=''
 function charClick(e){
     let charInfo1={'code':'charinfo','img':'','name':'','user_id':null}
@@ -42,19 +45,7 @@ function charClick(e){
 
 
 
-function cardClick(e){
-    if(player1.authority===true && player2.authority===true){
-        let cardId=e.getAttribute('id')//id값 저장
-        let cardImg=e.childNodes
-        $(cardImg).show()
-        let cardName=cardImg[0].currentSrc
-        e.style.backgroundImage=null
-       
-    }
-    else{
-        alert('not ready')
-    }
-}
+
 for(let i=0;i<30;i++){
     card[i].style.backgroundImage="url('img/backcard.jpg')"
     $(card[i].childNodes).hide()
@@ -129,9 +120,14 @@ const socket=io()
 const ALL_US=[]
 let player1=[]
 let player2=[]
+
 function connect(){
     socket.on('aaa',(data)=>{
+        
+        MY_NAME=data.name
+        My_IMG=data.img
         MY_USER_ID=data.user_id
+        
     })
     
     const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':MY_USER_ID,'authority':false}
@@ -173,17 +169,15 @@ socket.on('p1',(data)=>{
     if(data.user_id===1){
         player1=data
         player1Score.innerText='준비'
-        console.log(player1)
+       
     }
     else{
         player2=data
         player2Score.innerText='준비'
-        console.log(player2)
 
     }
 })
 socket.on('pp1',(data)=>{
-    console.log(data)
     $('#chat-window').append(`<div>
     [server]:${data.name}님이 준비 취소 했습니다.
     </div>`)
@@ -215,8 +209,10 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
                 card[i].style.backgroundImage="url('img/backcard.jpg')"
             }
         }
-    },1000)
+    },500)
+    MY_AU=true
     player1.turn=true
+    player2.turn=false
     player1Score.innerText=0
     player2Score.innerText=0
 })
@@ -309,4 +305,42 @@ function setCards(){
         card2[i].src=img
     }
 }
+
+
+// socket.on('start',(data)=>{
+//     data[0].turn=!data[1].turn
+//     data[1].turn=!data[0].turn
+//     if(MY_USER_ID===1){
+//         MY_TURN=data[0].turn
+//     }
+//     else{
+//         MY_TURN=data[1].turn
+//     }
+// })
+// let state=null
+// if(state===1){
+//     player1.turn=true
+//     player2.turn=false
+// }
+// else if(state===2){
+//     player1.turn=false
+//     player2.turn=true
+// }
+let tof=[true,false]
+let chosencard=[]
+    function cardClick(e){
+        if(player1.authority===true && player2.authority===true){
+            let cardId=e.getAttribute('id')//id값 저장
+            let cardImg=e.childNodes
+            $(cardImg).show()
+            let cardName=cardImg[0].currentSrc
+            e.style.backgroundImage=null
+            chosencard.push({'cardid':cardId,'cardName':cardName,'cardImg':cardImg})
+            console.log(chosencard)
+            
+        }
+        else{
+            alert('not ready')
+        }
+    }
 

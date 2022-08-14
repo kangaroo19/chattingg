@@ -49,6 +49,7 @@ const express = require("express")
 const http=require("http")
 const app=express()
 const path=require("path")
+const { emit } = require("process")
 const server=http.createServer(app)
 const socketIO=require("socket.io")
 
@@ -64,6 +65,10 @@ let ran=lottoNum()
 let user_id=0
 let ALL_US=[]
 let myid=null
+let myName=null
+let myImg=null
+let MyAu=false
+let MyTurn=false
 let player1=null
 let player2=null
 io.on("connection",function connect(socket,req){
@@ -71,6 +76,8 @@ io.on("connection",function connect(socket,req){
         user_id++
         data.user_id=user_id
         myid=user_id
+        myName=data.name
+        myImg=data.img
         sendUserId(user_id)
         io.emit('myuserid',data)
         io.emit('myuserid1',data)
@@ -86,7 +93,8 @@ io.on("connection",function connect(socket,req){
             io.emit('chatmessage',data)
         })
         socket.on('p',(data)=>{
-            console.log(data)
+            
+            MyAu=true
             if(data.user_id===1){
                 ALL_US[0].user_id=data.user_id
                 ALL_US[0].authority=true
@@ -100,24 +108,26 @@ io.on("connection",function connect(socket,req){
                 ALL_US[0].turn=true
                 io.emit('start',ALL_US)
             }
-            
+            io.emit('c1',ALL_US)
         })
         socket.on('pp',(data)=>{
             io.emit('pp1',data)
         })
-        console.log(ran)
        socket.emit('rancard',ran)
         
         socket.emit('aa',data)
-        socket.on('chose',(data)=>{
-            socket.emit('chose1',data)
-        })    
+        socket.on('sendcard',(data)=>{
+            console.log(data)
+            
+        })
+         
     })
 
     function sendUserId(user_id){
-        let data={'user_id':user_id}
+        let data={'user_id':user_id,'name':myName,'img':myImg,'authority':MyAu,'turn':MyTurn}
         socket.emit('aaa',data)
     }
+   
 })
 function lottoNum(){
     let lotto=[]
