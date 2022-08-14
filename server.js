@@ -116,10 +116,7 @@ io.on("connection",function connect(socket,req){
        socket.emit('rancard',ran)
         
         socket.emit('aa',data)
-        socket.on('sendcard',(data)=>{
-            console.log(data)
-            
-        })
+        
          
     })
 
