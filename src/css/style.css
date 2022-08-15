@@ -101,6 +101,7 @@ body{
     margin-top:5px;
     
 }
+
 img{
     
     width: 70px;
@@ -143,9 +144,9 @@ img{
     align-content: space-between;
 }
 .card{
-    border:1px solid black;
+    
     width:95px;
-    height:100px;
+    height:105px;
 }
 .char-chatting-window{
     margin:20px;

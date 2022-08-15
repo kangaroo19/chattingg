@@ -119,7 +119,7 @@ io.on("connection",function connect(socket,req){
         
          
     })
-
+    
     function sendUserId(user_id){
         let data={'user_id':user_id,'name':myName,'img':myImg,'authority':MyAu,'turn':MyTurn}
         socket.emit('aaa',data)

@@ -46,10 +46,7 @@ function charClick(e){
 
 
 
-for(let i=0;i<30;i++){
-    card[i].style.backgroundImage="url('img/hidden-card.png')"
-    $(card[i].childNodes).hide()
-}
+
 // function connect(){
 
 //     websocket=new WebSocket("ws://localhost:8080")
@@ -205,11 +202,12 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
             [server]:게임시작
             </div>`)
             clearInterval(interval)
+            const card=document.querySelectorAll('.card')
             for(let i=0;i<30;i++){
-                card[i].style.backgroundImage="url('img/backcard.jpg')"
+                card[i].src='img/hidden-card.png'
             }
         }
-    },500)
+    },250)
     MY_AU=true
     player1.turn=true
     player2.turn=false
@@ -287,7 +285,7 @@ function setCards(){
         'img/레이스.png','img/레이스.png',
         'img/로랑.png','img/로랑.png',
         'img/루팡.png','img/루팡.png',
-        'img/리본돼지.png','img/리본돼지.png',
+        'img/리본돼지카드.png','img/리본돼지카드.png',
         'img/엄티.png','img/엄티.png',
         'img/옥토퍼스.png','img/옥토퍼스.png',
         'img/와일드카고.png','img/와일드카고.png',
@@ -296,31 +294,57 @@ function setCards(){
         'img/커즈아이.png','img/커즈아이.png',
         'img/콜드아이.png','img/콜드아이.png',
         'img/파란달팽이.png','img/파란달팽이.png',
-        'img/뿔버섯.png','img/뿔버섯.png'
+        'img/뿔버섯카드.png','img/뿔버섯카드.png'
     ]
-    const card2=document.querySelectorAll('.card2')
+    const card=document.querySelectorAll('.card')
     for(let i=0;i<30;i++){
-        card[i].style.backgroundImage=null
-        $(card[i].childNodes).show()
-        let img=cards[arr[i]]
-        card2[i].src=img
+        card[i].src=cards[arr[i]]
+        // card[i].style.backgroundImage=null
+        // $(card[i].childNodes).show()
+        // let img=cards[arr[i]]
+        // card2[i].src=img
+    }
+}
+for(let i=1;i<=30;i++){
+    $('.game-window').append(`<img src="img/hidden-card.png" id=card${i} class=card>`)
+    if(i%6===0){
+        $('.game-window').append(`<br>`)
     }
 }
 
 
-
-    function cardClick(e){
-        if(player1.authority===true && player2.authority===true){
-            let cardId=e.getAttribute('id')//id값 저장
-            let cardImg=e.childNodes
-            console.log(cardImg)
-            $(cardImg).show()
-            let cardName=cardImg[0].currentSrc
-            e.style.backgroundImage=null
-           
+let chosecard=[]
+$('.card').on('click',(e)=>{
+    if(player1.authority===true && player2.authority===true){
+        let cardId=e.target.id
+        let cardTarget=e.target
+        let cardNumber=Number(e.target.id.substring(4))
+        e.target.src=cards[arr[cardNumber-1]]
+        let cardName=cards[arr[cardNumber-1]]
+        chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
+        console.log(chosecard)
+        matchCard(e.target,chosecard)        
+    }
+})
+let i=0
+function matchCard(e,chosecard){
+    if(chosecard.length>=2 && chosecard.length%2===0){
+        if(chosecard[i].cardname===chosecard[i+1].cardname){
+            console.log('correct')
+            i++
+            i++
         }
-        else{
-            alert('not ready')
+        else if(chosecard[i].cardname!==chosecard[i+1].cardname){
+            console.log('incorrect')
+            i++
+            i++
+            return 
         }
     }
+    else if(chosecard.length<2){
+        console.log('not eno')
+        return 
+    }
+}
+
 
