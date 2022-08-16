@@ -113,14 +113,24 @@ io.on("connection",function connect(socket,req){
         socket.on('pp',(data)=>{
             io.emit('pp1',data)
         })
-       socket.emit('rancard',ran)
+        socket.emit('rancard',ran)
         
         socket.emit('aa',data)
         
+        socket.on('card',(data)=>{
+            console.log(data)
+            io.emit('card1',data)
+        })
          
     })
     
     function sendUserId(user_id){
+        if(user_id===1){
+            MyTurn=true
+        }
+        else{
+            MyTurn=false
+        }
         let data={'user_id':user_id,'name':myName,'img':myImg,'authority':MyAu,'turn':MyTurn}
         socket.emit('aaa',data)
     }

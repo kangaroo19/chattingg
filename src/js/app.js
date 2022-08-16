@@ -124,7 +124,7 @@ function connect(){
         MY_NAME=data.name
         My_IMG=data.img
         MY_USER_ID=data.user_id
-        
+        MY_TURN=data.turn
     })
     
     const data={'code':'new_user','name':charInfo.name,'img':charInfo.img,'user_id':MY_USER_ID,'authority':false}
@@ -213,7 +213,8 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     player2.turn=false
     player1Score.innerText=0
     player2Score.innerText=0
-    
+    console.log(player1,player2)
+    console.log(MY_USER_ID,MY_NAME,MY_TURN)
 })
 socket.on('myuserid',(data)=>{
     $('#chat-window').append(`<div>
@@ -277,7 +278,7 @@ let arr=null
 socket.on('rancard',(data)=>{//랜덤한값 서버로부터 받아옴
     arr=data
 })
-
+let cardall=''
 function setCards(){
     cards=[
         'img/돼지.png','img/돼지.png',
@@ -296,6 +297,7 @@ function setCards(){
         'img/파란달팽이.png','img/파란달팽이.png',
         'img/뿔버섯카드.png','img/뿔버섯카드.png'
     ]
+    cardall=cards
     const card=document.querySelectorAll('.card')
     for(let i=0;i<30;i++){
         card[i].src=cards[arr[i]]
@@ -310,22 +312,33 @@ for(let i=1;i<=30;i++){
 
 
 let chosecard=[]
+let a=''
 $('.card').on('click',(e)=>{
     if(player1.authority===true && player2.authority===true){
+        console.log(e)
         let cardId=e.target.id
         let cardTarget=e.target
+        a=cardId
         let cardNumber=Number(e.target.id.substring(4))
         if($(e.target).hasClass('opened')) return;
-        
-        e.target.src=cards[arr[cardNumber-1]]
+        //e.target.src=cards[arr[cardNumber-1]]
+        //console.log(e.target)
         let cardName=cards[arr[cardNumber-1]]
         chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
+        
+        socket.emit('card',chosecard[chosecard.length-1])
+        
+
+        
         if(chosecard.length%2===0){
             matchCard(e.target,chosecard)        
         }
     }
 })
-
+socket.on('card1',(data)=>{ //원래는 이 함수를 위의 이벤트에 넣었는데 안됏었음 생각해보면 당연한거
+    console.log(123)
+    $('#'+data.cardid).attr("src",cards[arr[data.cardnumber-1]])
+})
 function matchCard(e,chosecard){
     let n=chosecard.length-1
     if(chosecard[n-1].cardname===chosecard[n].cardname){
