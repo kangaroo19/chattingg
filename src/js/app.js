@@ -299,10 +299,6 @@ function setCards(){
     const card=document.querySelectorAll('.card')
     for(let i=0;i<30;i++){
         card[i].src=cards[arr[i]]
-        // card[i].style.backgroundImage=null
-        // $(card[i].childNodes).show()
-        // let img=cards[arr[i]]
-        // card2[i].src=img
     }
 }
 for(let i=1;i<=30;i++){
@@ -319,32 +315,39 @@ $('.card').on('click',(e)=>{
         let cardId=e.target.id
         let cardTarget=e.target
         let cardNumber=Number(e.target.id.substring(4))
+        if($(e.target).hasClass('opened')) return;
+        
         e.target.src=cards[arr[cardNumber-1]]
         let cardName=cards[arr[cardNumber-1]]
         chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
-        console.log(chosecard)
-        matchCard(e.target,chosecard)        
+        if(chosecard.length%2===0){
+            matchCard(e.target,chosecard)        
+        }
     }
 })
-let i=0
+
 function matchCard(e,chosecard){
-    if(chosecard.length>=2 && chosecard.length%2===0){
-        if(chosecard[i].cardname===chosecard[i+1].cardname){
-            console.log('correct')
-            i++
-            i++
-        }
-        else if(chosecard[i].cardname!==chosecard[i+1].cardname){
-            console.log('incorrect')
-            i++
-            i++
-            return 
-        }
+    let n=chosecard.length-1
+    if(chosecard[n-1].cardname===chosecard[n].cardname){
+        $(chosecard[n-1].cardtarget).addClass('opened')
+        $(chosecard[n].cardtarget).addClass('opened')
     }
-    else if(chosecard.length<2){
-        console.log('not eno')
+    else if(chosecard[n-1].cardname!==chosecard[n].cardname){
+        console.log('incorrect')
+        setTimeout(()=>{
+            chosecard[n-1].cardtarget.src='img/hidden-card.png'
+            chosecard[n].cardtarget.src='img/hidden-card.png'
+
+        },1000)
         return 
     }
+    
 }
 
 
+function wait(sec) {
+    let start = Date.now(), now = start;
+    while (now - start < sec * 1000) {
+        now = Date.now();
+    }
+}
