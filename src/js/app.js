@@ -158,6 +158,7 @@ socket.on('chatmessage',(data)=>{
     [${data.name}]:${data.msg}
     </div>`)
     chatInput.value=''
+    
 })
 socket.on('p1',(data)=>{
     $('#chat-window').append(`<div>
@@ -259,6 +260,7 @@ function sendMessage(e){
     let message=chatInput.value
     let data={'name':charInfo.name,'user_id':MY_USER_ID,'msg':message}
     socket.emit('sendmessage',data)
+    
 }
 
 
