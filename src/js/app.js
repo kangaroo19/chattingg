@@ -185,6 +185,7 @@ socket.on('pp1',(data)=>{
         player2Score.innerText='준비중'
     }
 })
+let mine=''
 socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     gameStart.disabled=true
     let i=6
@@ -213,9 +214,10 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     player2.turn=false
     player1Score.innerText=0
     player2Score.innerText=0
-    console.log(player1,player2)
-    console.log(MY_USER_ID,MY_NAME,MY_TURN)
+    mine={'name':MY_NAME,'userid':MY_USER_ID,'turn':MY_TURN}
+    console.log(mine)
 })
+
 socket.on('myuserid',(data)=>{
     $('#chat-window').append(`<div>
     [server]:${data.name}님이 접속했습니다.
@@ -314,20 +316,23 @@ for(let i=1;i<=30;i++){
 let chosecard=[]
 let a=''
 $('.card').on('click',(e)=>{
-    if(player1.authority===true && player2.authority===true && MY_TURN===true){
-        console.log(e)
-        let cardId=e.target.id
-        let cardTarget=e.target
-        a=cardId
-        let cardNumber=Number(e.target.id.substring(4))
-        if($(e.target).hasClass('opened')) return;
-        //e.target.src=cards[arr[cardNumber-1]]
-        //console.log(e.target)
-        let cardName=cards[arr[cardNumber-1]]
-        chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
-        
-        socket.emit('card',chosecard)
-        
+    if(player1.authority===true && player2.authority===true){
+        if(mine.turn===true){
+            console.log(e)
+            let cardId=e.target.id
+            let cardTarget=e.target
+            a=cardId
+            let cardNumber=Number(e.target.id.substring(4))
+            if($(e.target).hasClass('opened')) return;
+            //e.target.src=cards[arr[cardNumber-1]]
+            //console.log(e.target)
+            let cardName=cards[arr[cardNumber-1]]
+            chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
+            socket.emit('card',chosecard)
+        }
+        else if(mine.turn===false){
+            alert('not your turn')
+        }
 
         
         // if(chosecard.length%2===0){
@@ -342,29 +347,28 @@ socket.on('card1',(data)=>{ //원래는 이 함수를 위의 이벤트에 넣었
         matchCard(data)
     }
 })
-
+let temp=''
 function matchCard(chosecard){
     let n=chosecard.length-1
     
-    if(chosecard[n-1].cardname===chosecard[n].cardname){//현재카드와 이전카드 비교
+    if(chosecard[n-1].cardname===chosecard[n].cardname){//짝 맞을때
         console.log('correct')
-        console.log(chosecard[n-1].cardid)
-        console.log(chosecard[n-1].cardtarget)
         $('#'+chosecard[n-1].cardid).addClass('opened')
         $('#'+chosecard[n].cardid).addClass('opened')
     }
-    else if(chosecard[n-1].cardname!==chosecard[n].cardname){
+    else if(chosecard[n-1].cardname!==chosecard[n].cardname){//안맞을때
         console.log('incorrect')
         setTimeout(()=>{
-            console.log(123)
             $('#'+chosecard[n-1].cardid).attr("src",'img/hidden-card.png')
             $('#'+chosecard[n].cardid).attr("src",'img/hidden-card.png')
-
-
         },1000)
+        socket.emit('changeplayer',mine)
+        socket.on('changeplayer',(data)=>{
+            mine=data
+            console.log(mine)
+        })
         return 
     }
-    
 }
 
 

@@ -118,10 +118,15 @@ io.on("connection",function connect(socket,req){
         socket.emit('aa',data)
         
         socket.on('card',(data)=>{
-            console.log(data)
+            
             io.emit('card1',data)
         })
-         
+        let array=[]
+        socket.on('changeplayer',(data)=>{
+            data.turn=!data.turn
+            console.log(data)
+            socket.emit('changeplayer',data)
+        }) 
     })
     
     function sendUserId(user_id){
