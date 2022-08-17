@@ -320,7 +320,6 @@ let a=''
 $('.card').on('click',(e)=>{
     if(player1.authority===true && player2.authority===true){
         if(mine.turn===true){
-            console.log(e)
             let cardId=e.target.id
             let cardTarget=e.target
             a=cardId
@@ -352,7 +351,6 @@ socket.on('card1',(data)=>{ //원래는 이 함수를 위의 이벤트에 넣었
 let temp=''
 function matchCard(chosecard){
     let n=chosecard.length-1
-    
     if(chosecard[n-1].cardname===chosecard[n].cardname){//짝 맞을때
         console.log('correct')
         $('#'+chosecard[n-1].cardid).addClass('opened')
@@ -364,10 +362,19 @@ function matchCard(chosecard){
             $('#'+chosecard[n-1].cardid).attr("src",'img/hidden-card.png')
             $('#'+chosecard[n].cardid).attr("src",'img/hidden-card.png')
         },1000)
+        
         socket.emit('changeplayer',mine)
         socket.on('changeplayer',(data)=>{
+            
             mine=data
-            console.log(mine)
+            // if(MY_USER_ID===1 && data.turn===false){
+            //     player1.score-=10
+            // }
+            // else if(MY_USER_ID===2 && data.turn===false){
+            //     player2.score-=10
+            // }
+            // player1Score.innerText=player1.score
+            // player2Score.innerText=player2.score
         })
         return 
     }
