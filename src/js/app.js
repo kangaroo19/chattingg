@@ -314,7 +314,7 @@ for(let i=1;i<=30;i++){
 let chosecard=[]
 let a=''
 $('.card').on('click',(e)=>{
-    if(player1.authority===true && player2.authority===true){
+    if(player1.authority===true && player2.authority===true && MY_TURN===true){
         console.log(e)
         let cardId=e.target.id
         let cardTarget=e.target
@@ -326,30 +326,40 @@ $('.card').on('click',(e)=>{
         let cardName=cards[arr[cardNumber-1]]
         chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
         
-        socket.emit('card',chosecard[chosecard.length-1])
+        socket.emit('card',chosecard)
         
 
         
-        if(chosecard.length%2===0){
-            matchCard(e.target,chosecard)        
-        }
+        // if(chosecard.length%2===0){
+        //     matchCard(chosecard)        
+        // }
     }
 })
 socket.on('card1',(data)=>{ //원래는 이 함수를 위의 이벤트에 넣었는데 안됏었음 생각해보면 당연한거
-    console.log(123)
-    $('#'+data.cardid).attr("src",cards[arr[data.cardnumber-1]])
+    
+    $('#'+data[data.length-1].cardid).attr("src",cards[arr[data[data.length-1].cardnumber-1]])
+    if(data.length%2===0){
+        matchCard(data)
+    }
 })
-function matchCard(e,chosecard){
+
+function matchCard(chosecard){
     let n=chosecard.length-1
-    if(chosecard[n-1].cardname===chosecard[n].cardname){
-        $(chosecard[n-1].cardtarget).addClass('opened')
-        $(chosecard[n].cardtarget).addClass('opened')
+    
+    if(chosecard[n-1].cardname===chosecard[n].cardname){//현재카드와 이전카드 비교
+        console.log('correct')
+        console.log(chosecard[n-1].cardid)
+        console.log(chosecard[n-1].cardtarget)
+        $('#'+chosecard[n-1].cardid).addClass('opened')
+        $('#'+chosecard[n].cardid).addClass('opened')
     }
     else if(chosecard[n-1].cardname!==chosecard[n].cardname){
         console.log('incorrect')
         setTimeout(()=>{
-            chosecard[n-1].cardtarget.src='img/hidden-card.png'
-            chosecard[n].cardtarget.src='img/hidden-card.png'
+            console.log(123)
+            $('#'+chosecard[n-1].cardid).attr("src",'img/hidden-card.png')
+            $('#'+chosecard[n].cardid).attr("src",'img/hidden-card.png')
+
 
         },1000)
         return 
