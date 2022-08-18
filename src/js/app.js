@@ -215,7 +215,7 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     player2.turn=false
     player1Score.innerText=0
     player2Score.innerText=0
-    mine={'name':MY_NAME,'userid':MY_USER_ID,'turn':MY_TURN}
+    mine={'name':MY_NAME,'userid':MY_USER_ID,'turn':MY_TURN,'score':0,'cal':10}
     console.log(mine)
 })
 
@@ -353,6 +353,7 @@ function matchCard(chosecard){
     let n=chosecard.length-1
     if(chosecard[n-1].cardname===chosecard[n].cardname){//짝 맞을때
         console.log('correct')
+
         $('#'+chosecard[n-1].cardid).addClass('opened')
         $('#'+chosecard[n].cardid).addClass('opened')
     }
@@ -364,22 +365,29 @@ function matchCard(chosecard){
         },1000)
         
         socket.emit('changeplayer',mine)
-        socket.on('changeplayer',(data)=>{
-            
-            mine=data
-            // if(MY_USER_ID===1 && data.turn===false){
-            //     player1.score-=10
-            // }
-            // else if(MY_USER_ID===2 && data.turn===false){
-            //     player2.score-=10
-            // }
-            // player1Score.innerText=player1.score
-            // player2Score.innerText=player2.score
-        })
         return 
     }
 }
-
+let aa=0
+let bb=0
+socket.on('changeplayer',(data)=>{
+    mine=data
+    // console.log(mine)
+    // if(data.turn===false){
+        
+    //     socket.emit('playerscore',mine)
+    // }
+    // socket.on('playerscore1',(data)=>{
+    //     mine.score=data.score
+    //     aa-=10
+    //     player1Score.innerText=aa
+    // })
+    // socket.on('playerscore2',(data)=>{
+    //     mine.score=data.score
+    //     bb-=10
+    //     player2Score.innerText=bb
+    // })
+})
 
 function wait(sec) {
     let start = Date.now(), now = start;

@@ -121,12 +121,35 @@ io.on("connection",function connect(socket,req){
             
             io.emit('card1',data)
         })
-        let array=[]
+       
         socket.on('changeplayer',(data)=>{
             data.turn=!data.turn
-            console.log(data)
+           
             socket.emit('changeplayer',data)
-        }) 
+        })
+
+        io.emit('playerscore',mine)
+        // socket.on('player1score',(data)=>{
+        //     data.score-=10
+        //     console.log(data)
+        //     socket.emit('player1score',data)
+        // })
+        // socket.on('player2score',(data)=>{
+        //     data.score-=10
+        //     console.log(data)
+        //     socket.emit('player2score',data)
+        // })
+        
+        // socket.on('playerscore',(data)=>{
+        //     console.log(data)
+        //     if(data.userid===1 && data.turn===false){
+        //         io.emit('playerscore1',data)
+        //     }
+        //     else if(data.userid===2 && data.turn===false){
+
+        //         io.emit('playerscore2',data)
+        //     }
+        // })
     })
     
     function sendUserId(user_id){
