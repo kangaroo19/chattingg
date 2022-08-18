@@ -128,7 +128,7 @@ io.on("connection",function connect(socket,req){
             socket.emit('changeplayer',data)
         })
 
-        io.emit('playerscore',mine)
+        
         // socket.on('player1score',(data)=>{
         //     data.score-=10
         //     console.log(data)

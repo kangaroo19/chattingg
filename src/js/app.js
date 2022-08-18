@@ -1,3 +1,5 @@
+
+
 const nameInput=document.querySelector('#nameinput')
 const startButton=document.querySelector('#startbutton')
 const mainWindow=document.querySelector('#main-window')
@@ -215,8 +217,7 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     player2.turn=false
     player1Score.innerText=0
     player2Score.innerText=0
-    mine={'name':MY_NAME,'userid':MY_USER_ID,'turn':MY_TURN,'score':0,'cal':10}
-    console.log(mine)
+    mine={'name':MY_NAME,'userid':MY_USER_ID,'turn':MY_TURN,'score':0}
 })
 
 socket.on('myuserid',(data)=>{
@@ -344,7 +345,7 @@ $('.card').on('click',(e)=>{
 socket.on('card1',(data)=>{ //원래는 이 함수를 위의 이벤트에 넣었는데 안됏었음 생각해보면 당연한거
     
     $('#'+data[data.length-1].cardid).attr("src",cards[arr[data[data.length-1].cardnumber-1]])
-    if(data.length%2===0){
+    if(data.length%2===0){//matchcard 함수는 카드를 두 장 고를때마다 실행
         matchCard(data)
     }
 })
@@ -352,19 +353,16 @@ let temp=''
 function matchCard(chosecard){
     let n=chosecard.length-1
     if(chosecard[n-1].cardname===chosecard[n].cardname){//짝 맞을때
-        console.log('correct')
-
         $('#'+chosecard[n-1].cardid).addClass('opened')
         $('#'+chosecard[n].cardid).addClass('opened')
     }
     else if(chosecard[n-1].cardname!==chosecard[n].cardname){//안맞을때
-        console.log('incorrect')
         setTimeout(()=>{
             $('#'+chosecard[n-1].cardid).attr("src",'img/hidden-card.png')
             $('#'+chosecard[n].cardid).attr("src",'img/hidden-card.png')
         },1000)
         
-        socket.emit('changeplayer',mine)
+        socket.emit('changeplayer',mine)//턴 교체
         return 
     }
 }
@@ -372,22 +370,11 @@ let aa=0
 let bb=0
 socket.on('changeplayer',(data)=>{
     mine=data
-    // console.log(mine)
-    // if(data.turn===false){
-        
-    //     socket.emit('playerscore',mine)
-    // }
-    // socket.on('playerscore1',(data)=>{
-    //     mine.score=data.score
-    //     aa-=10
-    //     player1Score.innerText=aa
-    // })
-    // socket.on('playerscore2',(data)=>{
-    //     mine.score=data.score
-    //     bb-=10
-    //     player2Score.innerText=bb
-    // })
+    
 })
+
+
+
 
 function wait(sec) {
     let start = Date.now(), now = start;
