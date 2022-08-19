@@ -211,7 +211,7 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
                 card[i].src='img/hidden-card.png'
             }
         }
-    },250)
+    },1000)
     MY_AU=true
     player1.turn=true
     player2.turn=false
