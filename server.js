@@ -72,6 +72,8 @@ let MyTurn=false
 let player1=null
 let player2=null
 io.on("connection",function connect(socket,req){
+    let score1=0
+        let score2=0
     socket.on('chatting',(data)=>{
         user_id++
         data.user_id=user_id
@@ -124,11 +126,25 @@ io.on("connection",function connect(socket,req){
        
         socket.on('changeplayer',(data)=>{
             data.turn=!data.turn
-           
             socket.emit('changeplayer',data)
         })
-
         
+        socket.on('playerscore1',(data)=>{
+            socket.emit('playerscore1',data)
+        })
+        socket.on('playerscore2',(data)=>{
+            socket.emit('playerscore2',data)
+        })
+        socket.on('score',(data)=>{
+            if(data.userid===1){
+                score1=data.score
+                io.emit('score',data)
+            }
+            else{
+                score2=data.score
+                io.emit('score',data)
+            }
+        })
         // socket.on('player1score',(data)=>{
         //     data.score-=10
         //     console.log(data)

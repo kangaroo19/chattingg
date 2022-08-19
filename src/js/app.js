@@ -366,13 +366,40 @@ function matchCard(chosecard){
         return 
     }
 }
-let aa=0
-let bb=0
+
 socket.on('changeplayer',(data)=>{
+
     mine=data
+    if(mine.userid===1 && mine.turn===false){
+        socket.emit('playerscore1',mine)
+    }
+    else if(mine.userid===2 && mine.turn===false){
+        socket.emit('playerscore2',mine)
+    }
+    
     
 })
+let aa=[0]
+let bb=[0]
+socket.on('playerscore1',(data)=>{
+    mine.score=data.score-10
+    socket.emit('score',mine)
+})
+socket.on('playerscore2',(data)=>{
+    mine.score=data.score-10
+    socket.emit('score',mine)
 
+})
+
+socket.on('score',(data)=>{
+    console.log(data)
+    if(data.userid===1){
+        player1Score.innerText=data.score
+    }
+    else{
+        player2Score.innerText=data.score
+    }
+})
 
 
 
