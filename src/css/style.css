@@ -1,5 +1,5 @@
 body{
-    background-color: rgba(124, 119, 119,0.5);
+    background-color: rgba(16, 15, 15, 0.767);
 }
 #window{
     position: relative;
@@ -9,9 +9,11 @@ body{
     width:1198px;
     height:550px;
     top:140px;
-    background-image: url('../img/단풍.png');
-    background-size: 100px;
-    background-image: repeat;
+    background-color: white;
+    background-image: url('../img/background.png');
+    background-size:1198px;
+    background-repeat:no-repeat;
+    background-position: center center;
     margin-top:-30px;
 }
 #main-widow{
@@ -248,5 +250,4 @@ img{
 #hello{
     width:200px;
 }
-/* * {cursor: url(https://cur.cursors-4u.net/games/gam-4/gam305.ani), url(https://cur.cursors-4u.net/games/gam-4/gam305.png), auto !important;}  */
-body {cursor: url(http://www.rw-designer.com/cursor-extern.php?id=8646);}
+* {cursor: url(https://cur.cursors-4u.net/games/gam-4/gam305.ani), url(https://cur.cursors-4u.net/games/gam-4/gam305.png), auto !important;} 

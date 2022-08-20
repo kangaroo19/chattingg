@@ -146,8 +146,11 @@ io.on("connection",function connect(socket,req){
             }
         })
         socket.on('playerscore3',(data)=>{
-            console.log(data)
             io.emit('playerscore3',data)
+        })
+        socket.on('opencard',(data)=>{
+            console.log(data[0],data[1])
+            io.emit('opencard',data)
         })
     })
     

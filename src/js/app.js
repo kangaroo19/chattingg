@@ -25,6 +25,8 @@ const player1Score=document.querySelector('#player1-score')
 const player2Score=document.querySelector('#player2-score')
 const firstcard=document.querySelector('#card1')
 
+
+
 const array=['img/스포아.png','img/빨간달팽이.png','img/슬라임.png','img/리본돼지.png','img/주황버섯.png','img/초록버섯.png','img/파란버섯.png','img/뿔버섯.png']
 let websocket=null
 let MY_USER_ID=''
@@ -347,7 +349,7 @@ $('.card').on('click',(e)=>{
         // }
     }
 })
-socket.on('card1',(data)=>{ //원래는 이 함수를 위의 이벤트에 넣었는데 안됏었음 생각해보면 당연한거
+socket.on('card1',(data)=>{ 
     
     $('#'+data[data.length-1].cardid).attr("src",cards[arr[data[data.length-1].cardnumber-1]])
     if(data.length%2===0){//matchcard 함수는 카드를 두 장 고를때마다 실행
@@ -358,8 +360,7 @@ let temp=''
 function matchCard(chosecard){
     let n=chosecard.length-1
     if(chosecard[n-1].cardname===chosecard[n].cardname && mine.turn===true){//짝 맞을때
-        $('#'+chosecard[n-1].cardid).addClass('opened')
-        $('#'+chosecard[n].cardid).addClass('opened')
+        socket.emit('opencard',chosecard)
         mine.score=mine.score+10
         socket.emit('playerscore3',mine)
     }
@@ -373,20 +374,46 @@ function matchCard(chosecard){
         return 
     }
 }
+socket.on('opencard',(data)=>{
+    let n=data.length-1
+    $('#'+data[n-1].cardid).addClass('opened')
+    $('#'+data[n].cardid).addClass('opened')
+    
+})
 socket.on('playerscore3',(data)=>{
     if(data.userid===1){
         player1Score.innerText=data.score
+        player1.score=data.score
         $('#chat-window').append(`<div>
         [server]:${data.name}님이 맞췄습니다 계속 진행하세요
         </div>`)
     }
     else{
         player2Score.innerText=data.score
+        player2.score=data.score
         $('#chat-window').append(`<div>
         [server]:${data.name}님이 맞췄습니다 계속 진행하세요
         </div>`)
     }
     scrollToBottom()
+    let length=$('.opened').length
+    if(length===30){
+        if(player1.score>player2.score){
+            $('#chat-window').append(`<div>
+            [server]:${player1.name}님이 승리했습니다.
+            </div>`)
+        }
+        else if(player1.score<player2.score){
+            $('#chat-window').append(`<div>
+            [server]:${player2.name}님이 승리했습니다.
+            </div>`)
+        }
+        else{
+            $('#chat-window').append(`<div>
+            [server]:무승부입니다.
+            </div>`)
+        }
+    }
 })
 
 socket.on('changeplayer',(data)=>{
@@ -401,10 +428,12 @@ socket.on('changeplayer',(data)=>{
 
 socket.on('playerscore1',(data)=>{
     mine.score=data.score-10
+    player1.score=mine.score
     socket.emit('score',mine)
 })
 socket.on('playerscore2',(data)=>{
     mine.score=data.score-10
+    player2.score=mine.score
     socket.emit('score',mine)
 
 })
@@ -436,6 +465,8 @@ function wait(sec) {
 
 function scrollToBottom(){
     let bottom=chatWindow.scrollHeight
-    console.log(bottom)
     chatWindow.scrollTo(0,bottom)
 }
+const opened=document.getElementsByClassName('.opened')
+let aaa=0
+
