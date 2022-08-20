@@ -160,7 +160,7 @@ socket.on('chatmessage',(data)=>{
     [${data.name}]:${data.msg}
     </div>`)
     chatInput.value=''
-    
+    scrollToBottom()
 })
 socket.on('p1',(data)=>{
     $('#chat-window').append(`<div>
@@ -187,6 +187,8 @@ socket.on('pp1',(data)=>{
     else{
         player2Score.innerText='준비중'
     }
+    scrollToBottom()
+
 })
 let mine=''
 socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
@@ -211,6 +213,8 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
                 card[i].src='img/hidden-card.png'
             }
         }
+        scrollToBottom()
+
     },1000)
     MY_AU=true
     player1.turn=true
@@ -224,6 +228,7 @@ socket.on('myuserid',(data)=>{
     $('#chat-window').append(`<div>
     [server]:${data.name}님이 접속했습니다.
     </div>`)
+    scrollToBottom()
 })
 gameStart.addEventListener('click',()=>{
     if(ALL_US.length===2){
@@ -352,9 +357,11 @@ socket.on('card1',(data)=>{ //원래는 이 함수를 위의 이벤트에 넣었
 let temp=''
 function matchCard(chosecard){
     let n=chosecard.length-1
-    if(chosecard[n-1].cardname===chosecard[n].cardname){//짝 맞을때
+    if(chosecard[n-1].cardname===chosecard[n].cardname && mine.turn===true){//짝 맞을때
         $('#'+chosecard[n-1].cardid).addClass('opened')
         $('#'+chosecard[n].cardid).addClass('opened')
+        mine.score=mine.score+10
+        socket.emit('playerscore3',mine)
     }
     else if(chosecard[n-1].cardname!==chosecard[n].cardname){//안맞을때
         setTimeout(()=>{
@@ -366,9 +373,23 @@ function matchCard(chosecard){
         return 
     }
 }
+socket.on('playerscore3',(data)=>{
+    if(data.userid===1){
+        player1Score.innerText=data.score
+        $('#chat-window').append(`<div>
+        [server]:${data.name}님이 맞췄습니다 계속 진행하세요
+        </div>`)
+    }
+    else{
+        player2Score.innerText=data.score
+        $('#chat-window').append(`<div>
+        [server]:${data.name}님이 맞췄습니다 계속 진행하세요
+        </div>`)
+    }
+    scrollToBottom()
+})
 
 socket.on('changeplayer',(data)=>{
-
     mine=data
     if(mine.userid===1 && mine.turn===false){
         socket.emit('playerscore1',mine)
@@ -376,11 +397,8 @@ socket.on('changeplayer',(data)=>{
     else if(mine.userid===2 && mine.turn===false){
         socket.emit('playerscore2',mine)
     }
-    
-    
 })
-let aa=[0]
-let bb=[0]
+
 socket.on('playerscore1',(data)=>{
     mine.score=data.score-10
     socket.emit('score',mine)
@@ -392,13 +410,19 @@ socket.on('playerscore2',(data)=>{
 })
 
 socket.on('score',(data)=>{
-    console.log(data)
     if(data.userid===1){
         player1Score.innerText=data.score
+        $('#chat-window').append(`<div>
+        [server]:${data.name}님이 틀렸습니다
+        </div>`)
     }
     else{
         player2Score.innerText=data.score
+        $('#chat-window').append(`<div>
+        [server]:${data.name}님이 틀렸습니다
+        </div>`)
     }
+    scrollToBottom()
 })
 
 
@@ -408,4 +432,10 @@ function wait(sec) {
     while (now - start < sec * 1000) {
         now = Date.now();
     }
+}
+
+function scrollToBottom(){
+    let bottom=chatWindow.scrollHeight
+    console.log(bottom)
+    chatWindow.scrollTo(0,bottom)
 }
