@@ -37,19 +37,32 @@ let My_IMG=''
 let MY_TURN=false
 let MY_AU=false
 let charInfo=''
-let curimg=null
+let curimg={'charid':null,'target':null,'img':null}
 function charClick(e){
+    if(curimg.charid!==null){
+        console.log(curimg.target)
+        curimg.target.childNodes[0].src=curimg.img
+    }
     curimg=e.childNodes[0]
     let charInfo1={'code':'charinfo','img':'','name':'','user_id':null}
     let charId=e.getAttribute('id')
     let number=charId.substring(4,charId.length)
     charInfo1.img=array[number-1]
+    curimg.charid=charId
+    curimg.target=e
+    curimg.img=array[number-1]
     nameInput.value=charInfo1.img.substring(4,array[number-1].length-4)
     charInfo1.name=nameInput.value
     charInfo=charInfo1
-    console.dir(e.childNodes[0])
     e.childNodes[0].src=array2[number-1]
 }
+
+// $('.char').on('click',(e)=>{
+//     console.log(e.target.parentNode)
+//     let charId=e.target.parentNode.getAttribute('id')
+//     let number=charId.substring(4,charId.lenght)
+//     e.target.src=array2[number-1]
+// })
 
 
 
@@ -417,6 +430,7 @@ socket.on('playerscore3',(data)=>{
             [server]:무승부입니다.
             </div>`)
         }
+        scrollToBottom()
     }
 })
 
