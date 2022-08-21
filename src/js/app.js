@@ -28,6 +28,8 @@ const firstcard=document.querySelector('#card1')
 
 
 const array=['img/스포아.png','img/빨간달팽이.png','img/슬라임.png','img/리본돼지.png','img/주황버섯.png','img/초록버섯.png','img/파란버섯.png','img/뿔버섯.png']
+const array2=['img/스포아hit.png','img/빨간달팽이hit.png','img/슬라임hit.png','img/리본돼지hit.png','img/주황버섯hit.png','img/초록버섯hit.png','img/파란버섯hit.png','img/뿔버섯hit.png']
+
 let websocket=null
 let MY_USER_ID=''
 let MY_NAME=''
@@ -35,16 +37,18 @@ let My_IMG=''
 let MY_TURN=false
 let MY_AU=false
 let charInfo=''
+let curimg=null
 function charClick(e){
+    curimg=e.childNodes[0]
     let charInfo1={'code':'charinfo','img':'','name':'','user_id':null}
     let charId=e.getAttribute('id')
     let number=charId.substring(4,charId.length)
     charInfo1.img=array[number-1]
-    //charInfo1.name=array[number-1].substring(4,array[number-1].length-4)
-    //nameInput.value=charInfo1.name
     nameInput.value=charInfo1.img.substring(4,array[number-1].length-4)
     charInfo1.name=nameInput.value
     charInfo=charInfo1
+    console.dir(e.childNodes[0])
+    e.childNodes[0].src=array2[number-1]
 }
 
 

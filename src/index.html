@@ -13,10 +13,19 @@
     <div id="window" >
         <div id="main-window">
             <div class="title-container">
-                <div class="main-title">어서오세요</div>
+                <div class="top-title">
+                    <div><img id="monstercard" src="img/몬스터카드.png" alt=""></div>
+                    <div id="top-title-cont">MATCH CARD</div>
+                </div>
+                <div class="main-title">
+                    <div id="title-img"><img src="img/cardgame.gif" alt=""></div>
+                    <div id="title-cont">같은그림찾기</div>
+                </div>
             </div>
             <div class="char-container">
-                <div class="char-desc">choose your character and name</div>
+                <div class="wrapper">
+                    <div class="char-desc" >캐릭터를 선택하고 이름을 정해주세요</div>
+                </div>
                     <div class="char-select-name">
                         <div class="char-select">
                             <div class="first-row">
@@ -33,8 +42,8 @@
                             </div>
                         </div>
                         <div class="char-name">
-                            <input id="nameinput" type="text" maxlength='4'>
-                            <button id="startbutton">Start</button>
+                            <input id="nameinput" autocomplete='off' type="text" maxlength='7'>
+                            <button id="startbutton">START!!</button>
                         </div>
                     </div>
             </div>

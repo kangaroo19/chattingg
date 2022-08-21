@@ -21,49 +21,74 @@ body{
     
     z-index: 999;
 }
-
 .title-container{
-    border:1px solid black;
-    width:400px;
     margin:0 auto;
-    margin-top:20px;
-    height:140px;
-    line-height: 140px;
-    background-color: white;
+    margin-top: 20px;
+    border:1px solid black;
+    background-color:rgba(0, 0, 0, 0.5);
+    width:400px;
+    height:130px;
+    box-shadow: 3px 3px;
+}
+#monstercard{
+    width:20px;
+    height:25px;
+}
+.top-title{
+    display: flex;
+    background-color: rgb(85, 149, 205);
+    height:26px;
+}
+#top-title-cont{
+    font-family: 'HBIOS-SYS';
+
 }
 .main-title{
-    font-size: 2.7rem;
-    text-align: center;
-    font-family: 'KOTRAHOPE';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 17px;
 }
+#title-cont{
+    font-size: 2rem;
+    font-family: 'ONE-Mobile-POP';
+    color: white;
+}
+
 .char-container{
-    background-color: white;
+    background-color: rgba(193, 146, 82,0.8);
     width:600px;
     height:270px;
-    border:1px solid black;
     margin:auto;
     margin-top:40px;
+    border:2px solid black;
 }
 .char-select-name{
     display: flex;
 }
 .char-desc{
-    border:1px solid black;
     text-align: center;
     margin: 10px 10px 0px 10px;
+    font-family: 'KOTRAHOPE';
+    font-size: 1.2rem;
+    border:3px solid black;
+    border-radius: 10px;
+    background-color: rgb(201, 104, 6);
 }
 .char-select{
-    border:1px solid black;
+    background-color: antiquewhite;
     width:430px;
     height:200px;
     margin:15px 10px;
 }
 .char-name{
-    border:1px solid black;
     width:156px;
     height:200px;
     margin:15px 10px;
-    margin-left:0
+    margin-left:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 #nameinput{
     width:140px;
@@ -103,15 +128,31 @@ body{
     margin-top:5px;
     
 }
-
+#startbutton{
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'BMDOHYEON';
+    width:120px;
+    height:30px;
+    background-color: rgb(237, 99, 25);
+    border: rgb(237, 99, 25);
+}
 img{
     
     width: 70px;
     height:60px;
 }
-
+#char1:hover{
+    
+}
 .none{
     display: none;
+}
+@font-face {
+    font-family: 'BMDOHYEON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 /* @media screen and (max-width:800px){
     #window{
@@ -239,14 +280,45 @@ img{
     background-color: black;
     color:white
 } */
+
+
+
+  
+ 
+  
+  @keyframes rightToLeft {
+    0% {
+      transform: translateX(200px);
+    }
+    100% {
+      transform: translateX(-160px);
+    }
+  }
+
 @font-face {
     font-family: 'KOTRAHOPE';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
-
-
+@font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HBIOS-SYS';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 #hello{
     width:200px;
 }
