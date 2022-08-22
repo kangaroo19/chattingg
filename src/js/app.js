@@ -276,8 +276,15 @@ startButton.addEventListener('click',()=>{
         mainWindow.classList.add('none')
         chattingWindow.classList.remove('none')
     }
+    else if(charInfo===''&&nameInput.value===''){
+        $('#alert').removeClass('none')
+        $('#desc').html("캐릭터를 선택하고 이름을 정해주세요.");
+    }
 })
 
+$('#alertbutton').on('click',()=>{
+    $('#alert').addClass('none')
+})
 
 chatForm.addEventListener('submit',sendMessage)
 function sendMessage(e){
