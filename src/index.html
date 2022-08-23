@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/몬스터카드.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>MATCHCARD</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -13,7 +14,7 @@
 <body>
     <div id="window" >
         <div id="main-window">
-            <div class="title-container">
+            <div class="title-container animate__animated animate__backInUp">
                 <div class="top-title">
                     <div><img id="monstercard" src="img/몬스터카드.png" alt=""></div>
                     <div id="top-title-cont">MATCH CARD</div>
@@ -23,7 +24,7 @@
                     <div id="title-cont">같은그림찾기</div>
                 </div>
             </div>
-            <div class="char-container">
+            <div class="char-container animate__animated animate__backInUp">
                 <div class="wrapper">
                     <div class="char-desc" >캐릭터를 선택하고 이름을 정해주세요</div>
                 </div>
@@ -43,7 +44,7 @@
                             </div>
                         </div>
                         <div class="char-name">
-                            <input id="nameinput" autocomplete='off' type="text" maxlength='7'>
+                            <input id="nameinput" autocomplete='off' type="text" maxlength='7' placeholder="이름을 입력해주세요">
                             <div id="charinfo" class="none">
                                 <div id="charinfo-name">스포아</div>
                                 <div id="charinfo-info">
@@ -99,7 +100,7 @@
                     <div id="chat-input-container">
                         <form id="chatForm">
                             <input type="text" autocomplete='off' required
-                            placeholder="send message" id="chat-input">
+                            placeholder="send message" id="chat-input" maxlength='30'>
                             <!-- <input type="button" id="chat-input-send" value="전송"> -->
                         </form>
                     </div>
@@ -108,7 +109,7 @@
            </div>
         </div>
     </div>
-    <div class="none" id="alert">
+    <div class="none alert">
         <div id="alert-main">
             <div id="main-img"><img src="img/표지판.png" alt=""><div>경고표지판</div></div>
             <div id="main-desc"><div id="desc"></div></div>

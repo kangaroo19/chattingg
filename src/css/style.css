@@ -147,12 +147,10 @@ body{
     width:120px;
     height:30px;
     border: rgb(237, 99, 25);
-    /* background:linear-gradient(to right,rgb(239, 147, 113),rgb(226, 105, 53)); */
     background-color: rgb(220, 120, 74);
 }
 #startbutton:hover{
     transition: 1s all;
-    /* background:linear-gradient(to right,rgb(113, 239, 121),rgb(8, 210, 41)) */
     background-color: rgb(144, 239, 62);
 }
 img{
@@ -160,13 +158,11 @@ img{
     width: 70px;
     height:60px;
 }
-#char1:hover{
-    
-}
+
 .none{
     display: none;
 }
-#alert{
+.alert{
     background-color: rgba(0, 157, 255,0.8);
     position: absolute;
     width:400px;
@@ -200,6 +196,7 @@ img{
     margin-top: 10px;
     width:80px;
     color: white;
+    font-family: 'GongGothicMedium';
 }
 #main-desc{
     font-family: 'MabinogiClassicR';
@@ -216,7 +213,8 @@ img{
     border:rgb(153, 255, 119);
     margin-right:10px;
     margin-top:3px;
-    color: white
+    color: white;
+    font-family: 'GongGothicMedium';
 }
 @font-face {
     font-family: 'BMDOHYEON';
@@ -282,7 +280,8 @@ img{
 }
 .char-window{
     margin:0 auto;
-    border:1px solid black;
+    /* border:1px solid black; */
+    background-color: antiquewhite;
     width:470px;
     height:200px;
     display: flex;
@@ -290,13 +289,30 @@ img{
     justify-content: space-between;
 }
 .entered-char{
+    
     width:100px;
     height:190px;
-    border:1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color:rgb(204, 227, 248);
+    border-radius: 5px;
+}
+.entered-char-img{
+    background-color: rgb(204, 227, 248);
+}
+.entered-char-img>img{
+    margin-left:10px;
+    margin-top:30px;
+}
+.entered-char-name{
+    text-align: center;
+    background-color: rgb(82, 162, 242);
+}
+.entered-char-score{
+    text-align: center;
+    background-color: white;
 }
 .chat-window-container{
     margin:0 auto;
@@ -312,6 +328,11 @@ img{
     width:470px;
     height:250px;
     border-bottom:1px solid black;
+    background-color: black;
+}
+#chat-window>div{
+    font-family: 'PyeongChang-Bold';
+    color:white
 }
 #chat-input-container{
     margin:0 auto;
@@ -319,23 +340,25 @@ img{
 #chat-input{
     width:400px;
 }
+
 .entered-char-img{
     margin:auto 0;
     width:95px;
     height:120px;
-    border:1px solid black;
 }
 .entered-char-name{
     margin:auto 0;
     width:95px;
     height:30px;
-    border:1px solid black;
+    line-height: 30px;
+    font-family: 'GongGothicMedium';
 }
 .entered-char-score{
     margin:auto 0;
     width:95px;
     height:30px;
-    border:1px solid black;
+    line-height: 30px;
+    font-family: 'GongGothicMedium';
 }
 #first-char{
     margin-left:3px;
@@ -351,6 +374,9 @@ img{
     border:1px solid black;
     line-height: 35px;
     text-align: center;
+    font-family: 'Cafe24Ssurround';
+    border-radius: 35px;
+    background-color: rgb(223, 73, 27);
 }
 /* .card{
     background-image: url('../img/backcard.jpg');
@@ -362,7 +388,12 @@ img{
     background-color: black;
     color:white
 } */
-
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
   
@@ -376,7 +407,12 @@ img{
       transform: translateX(-160px);
     }
   }
-
+  @font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 @font-face {
     font-family: 'KOTRAHOPE';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
@@ -398,6 +434,12 @@ img{
 @font-face {
     font-family: 'HBIOS-SYS';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PyeongChang-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChang-Bold.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }

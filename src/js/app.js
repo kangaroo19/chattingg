@@ -182,7 +182,7 @@ socket.on('chatmessage',(data)=>{
     scrollToBottom()
 })
 socket.on('p1',(data)=>{
-    $('#chat-window').append(`<div>
+    $('#chat-window').append(`<div style="color:yellow">
     [server]:${data.name}님이 준비했습니다.
     </div>`)
     if(data.user_id===1){
@@ -195,9 +195,10 @@ socket.on('p1',(data)=>{
         player2Score.innerText='준비'
 
     }
+    scrollToBottom()
 })
 socket.on('pp1',(data)=>{
-    $('#chat-window').append(`<div>
+    $('#chat-window').append(`<div style="color:yellow">
     [server]:${data.name}님이 준비 취소 했습니다.
     </div>`)
     if(data.user_id===1){
@@ -217,13 +218,13 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     let interval=setInterval(()=>{
         if(i>0){
             --i
-            $('#chat-window').append(`<div>
+            $('#chat-window').append(`<div style="color:yellow">
             [server]:${i}
             </div>`)
         }
         if(i===0){
             $('.card img').hide();
-            $('#chat-window').append(`<div>
+            $('#chat-window').append(`<div style="color:yellow">
             [server]:게임시작
             </div>`)
             clearInterval(interval)
@@ -244,7 +245,7 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
 })
 
 socket.on('myuserid',(data)=>{
-    $('#chat-window').append(`<div>
+    $('#chat-window').append(`<div style="color:yellow">
     [server]:${data.name}님이 접속했습니다.
     </div>`)
     scrollToBottom()
@@ -263,7 +264,8 @@ gameStart.addEventListener('click',()=>{
         }
     }
     else{
-        alert('not enough player')
+        $('.alert').removeClass('none')
+        $('#desc').html("플레이어가 충분하지 않습니다.");
     }
 }) 
 
@@ -277,13 +279,13 @@ startButton.addEventListener('click',()=>{
         chattingWindow.classList.remove('none')
     }
     else if(charInfo===''&&nameInput.value===''){
-        $('#alert').removeClass('none')
+        $('.alert').removeClass('none')
         $('#desc').html("캐릭터를 선택하고 이름을 정해주세요.");
     }
 })
 
 $('#alertbutton').on('click',()=>{
-    $('#alert').addClass('none')
+    $('.alert').addClass('none')
 })
 
 chatForm.addEventListener('submit',sendMessage)
@@ -364,7 +366,8 @@ $('.card').on('click',(e)=>{
             socket.emit('card',chosecard)
         }
         else if(mine.turn===false){
-            alert('not your turn')
+            $('.alert').removeClass('none')
+            $('#desc').html("당신차례가 아닙니다.");
         }
 
         
@@ -408,14 +411,14 @@ socket.on('playerscore3',(data)=>{
     if(data.userid===1){
         player1Score.innerText=data.score
         player1.score=data.score
-        $('#chat-window').append(`<div>
+        $('#chat-window').append(`<div style="color:yellow">
         [server]:${data.name}님이 맞췄습니다 계속 진행하세요
         </div>`)
     }
     else{
         player2Score.innerText=data.score
         player2.score=data.score
-        $('#chat-window').append(`<div>
+        $('#chat-window').append(`<div style="color:yellow">
         [server]:${data.name}님이 맞췄습니다 계속 진행하세요
         </div>`)
     }
@@ -423,7 +426,7 @@ socket.on('playerscore3',(data)=>{
     let length=$('.opened').length
     if(length===30){
         if(player1.score>player2.score){
-            $('#chat-window').append(`<div>
+            $('#chat-window').append(`<div style="color:yellow">
             [server]:${player1.name}님이 승리했습니다.
             </div>`)
         }
