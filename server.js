@@ -107,7 +107,7 @@ io.on("connection",function connect(socket,req){
             }
             io.emit('p1',data)
             if(ALL_US[0].authority===true && ALL_US[1].authority===true){
-                ALL_US[0].turn=true
+                //ALL_US[0].turn=true
                 io.emit('start',ALL_US)
             }
             io.emit('c1',ALL_US)
@@ -149,7 +149,6 @@ io.on("connection",function connect(socket,req){
             io.emit('playerscore3',data)
         })
         socket.on('opencard',(data)=>{
-            console.log(data[0],data[1])
             io.emit('opencard',data)
         })
     })

@@ -236,6 +236,7 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
         scrollToBottom()
 
     },1000)
+    firstchar.classList.add('border')
     MY_AU=true
     player1.turn=true
     player2.turn=false
@@ -348,6 +349,8 @@ for(let i=1;i<=30;i++){
     }
 }
 
+const firstchar=document.getElementById('first-char')
+const secondchar=document.getElementById('second-char')
 
 let chosecard=[]
 let a=''
@@ -377,7 +380,6 @@ $('.card').on('click',(e)=>{
     }
 })
 socket.on('card1',(data)=>{ 
-    
     $('#'+data[data.length-1].cardid).attr("src",cards[arr[data[data.length-1].cardnumber-1]])
     if(data.length%2===0){//matchcard 함수는 카드를 두 장 고를때마다 실행
         matchCard(data)
@@ -387,7 +389,7 @@ let temp=''
 function matchCard(chosecard){
     let n=chosecard.length-1
     if(chosecard[n-1].cardname===chosecard[n].cardname && mine.turn===true){//짝 맞을때
-        socket.emit('opencard',chosecard)
+        socket.emit('opencard',chosecard) //열려잇는카드 .opened클래스 추가하여 못누르게
         mine.score=mine.score+10
         socket.emit('playerscore3',mine)
     }
@@ -468,12 +470,16 @@ socket.on('playerscore2',(data)=>{
 
 socket.on('score',(data)=>{
     if(data.userid===1){
+        firstchar.classList.remove('border')
+        secondchar.classList.add('border')
         player1Score.innerText=data.score
         $('#chat-window').append(`<div>
         [server]:${data.name}님이 틀렸습니다
         </div>`)
     }
     else{
+        firstchar.classList.add('border')
+        secondchar.classList.remove('border')
         player2Score.innerText=data.score
         $('#chat-window').append(`<div>
         [server]:${data.name}님이 틀렸습니다

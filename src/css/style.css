@@ -188,6 +188,9 @@ img{
     align-items: center;
     justify-content:center;
 }
+.border{
+    border:2px solid red;
+}
 #main-img>div{
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 20px;
