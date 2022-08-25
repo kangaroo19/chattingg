@@ -29,7 +29,17 @@ const firstcard=document.querySelector('#card1')
 
 const array=['img/스포아.png','img/빨간달팽이.png','img/슬라임.png','img/리본돼지.png','img/주황버섯.png','img/초록버섯.png','img/파란버섯.png','img/뿔버섯.png']
 const array2=['img/스포아hit.png','img/빨간달팽이hit.png','img/슬라임hit.png','img/리본돼지hit.png','img/주황버섯hit.png','img/초록버섯hit.png','img/파란버섯hit.png','img/뿔버섯hit.png']
-
+const map=[
+            {'map':'img/커닝시티.PNG','name':'커닝시티','logo':'커닝시티로고.png','music':''},
+            {'map':'img/헤네시스.PNG','name':'헤네시스','logo':'헤네시스로고.png','music':''},
+            {'map':'img/페리온.PNG','name':'페리온','logo':'페리온로고.png','music':''},
+            {'map':'img/엘리니아.PNG','name':'엘리니아','logo':'엘리니아로고.pngㅋ','music':''},
+            {'map':'img/리스항구.PNG','name':'리스항구','logo':'리스항구로고.pngㅋ','music':''},
+        ]
+function mapAndLogo(){
+    let ran=Math.floor(Math.random()*map.length)
+    
+}
 let websocket=null
 let MY_USER_ID=''
 let MY_NAME=''
@@ -276,6 +286,7 @@ startButton.addEventListener('click',()=>{
     charInfo.name=nameInput.value
     if(charInfo!=='' && nameInput.value!==''){
         connect()
+        $('#window').css('border','none')
         mainWindow.classList.add('none')
         chattingWindow.classList.remove('none')
     }

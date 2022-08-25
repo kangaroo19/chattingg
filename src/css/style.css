@@ -1,5 +1,6 @@
 body{
     background-color: rgba(16, 15, 15, 0.767);
+    background-image: url('../img/curningcity.PNG');
 }
 #window{
     position: relative;
@@ -251,7 +252,6 @@ img{
 } */
 #chatting-window{
     
-    
     background-color: white;
     border-radius: 10px;
 }
@@ -379,6 +379,10 @@ img{
     font-family: 'Cafe24Ssurround';
     border-radius: 35px;
     background-color: rgb(223, 73, 27);
+}
+.chatting-top-container{
+    display: flex;
+    border:1px solid black;
 }
 /* .card{
     background-image: url('../img/backcard.jpg');
