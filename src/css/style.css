@@ -257,6 +257,8 @@ img{
 }
 .chatting-container{
     display: flex;
+    border:1px solid black;
+    border-top:none;
 }
 .game-window{
     margin:20px;
@@ -298,11 +300,11 @@ img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:rgb(204, 227, 248);
+    background-color:#99bbcc;
     border-radius: 5px;
 }
 .entered-char-img{
-    background-color: rgb(204, 227, 248);
+    background-color: #99bbcc;
 }
 .entered-char-img>img{
     margin-left:10px;
@@ -310,7 +312,7 @@ img{
 }
 .entered-char-name{
     text-align: center;
-    background-color: rgb(82, 162, 242);
+    background-color: #6e92a9;
 }
 .entered-char-score{
     text-align: center;
@@ -382,7 +384,17 @@ img{
 }
 .chatting-top-container{
     display: flex;
-    border:1px solid black;
+    height:35px;
+    align-items: center;
+    border:1px solid #99bbcc;
+    background-color: #99bbcc;
+}
+#chatting-top-img{
+    width:30px;
+    height:30px;
+}
+#chatting-top-desc{
+    color:white;
 }
 /* .card{
     background-image: url('../img/backcard.jpg');
