@@ -45,6 +45,7 @@
 // })
 
 
+const { count } = require("console")
 const express = require("express") 
 const http=require("http")
 const app=express()
@@ -71,9 +72,11 @@ let MyAu=false
 let MyTurn=false
 let player1=null
 let player2=null
+let array=[]
 io.on("connection",function connect(socket,req){
     let score1=0
-        let score2=0
+    let score2=0
+    
     socket.on('chatting',(data)=>{
         user_id++
         data.user_id=user_id
@@ -150,6 +153,24 @@ io.on("connection",function connect(socket,req){
         })
         socket.on('opencard',(data)=>{
             io.emit('opencard',data)
+        })
+        socket.on('disconnect',function(){
+            console.log('disconnected')
+            console.log(user_id)
+            io.emit('dc',user_id)
+        })
+        socket.on('yorn',(data)=>{
+            array.push(data.msg)
+            console.log(array)
+            if(array[0]==='y' && array[1]==='y'){
+                console.log(123)
+                let ran1=lottoNum()
+                // socket.emit('asdf',array)
+                // socket.on('asdf',(data)=>{
+                //     socket.emit('rancard',ran1)
+                // })
+
+            }
         })
     })
     

@@ -71,83 +71,6 @@ function charClick(e){
     e.childNodes[0].src=array2[number-1]
 }
 
-// $('.char').on('click',(e)=>{
-//     console.log(e.target.parentNode)
-//     let charId=e.target.parentNode.getAttribute('id')
-//     let number=charId.substring(4,charId.lenght)
-//     e.target.src=array2[number-1]
-// })
-
-
-
-
-
-// function connect(){
-
-//     websocket=new WebSocket("ws://localhost:8080")
-
-//     websocket.onmessage=function(e){
-//         let message=JSON.parse(e.data)
-//         switch(message.code){
-//             case 'my_user_id':
-//                 MY_USER_ID=message.msg //message.msg는 user_id
-//                 charInfo.user_id=message.msg
-//                 sendMyInfo(charInfo.name)
-//                 break
-//             case 'all_users':
-//                 let All_WS=JSON.parse(message.msg)
-//                 All_WS.forEach((element,index)=>{
-//                     console.log(element)
-//                     if(element.user_id===1){
-//                         charImg1.src=element.user_img
-//                         charName1.innerHTML=element.user_name
-//                     }
-//                     else if(element.user_id===2){
-//                         charImg2.src=element.user_img
-//                         charName2.innerHTML=element.user_name
-//                     }
-//                     else if(element.user_id===3){
-//                         charImg3.src=element.user_img
-//                         charName3.innerHTML=element.user_name
-//                     }
-//                     else if(element.user_id===4){
-//                         charImg4.src=element.user_img
-//                         charName4.innerHTML=element.user_name
-//                     }
-//                 })
-//                 break
-//             case 'chat_message':
-//                 $('#chat-window').append(`<div>
-//                 ${message.sender_name}:${message.msg}
-//                 </div>`)
-//                 break
-
-//         }
-//     }
-//     function sendMyInfo(name){
-//         MY_NAME=name
-//         let data={'code':'connected_user','name':name,'img':charInfo.img,'user_id':MY_USER_ID}
-//         websocket.send(JSON.stringify(data))
-//     }
-// }
-
-// function sendMessage(){
-//     let message=chatInput.value
-//     let data={'code':'send_message','name':MY_NAME,'user_id':MY_USER_ID,'msg':message}
-//     websocket.send(JSON.stringify(data))
-// }
-// chatInputSend.addEventListener('click',sendMessage)
-// startButton.addEventListener('click',()=>{
-//     charInfo.name=nameInput.value//디폴트 캐릭터값(..주황버섯)이 아닌 본인이 정한 이름이면 최신화
-//     if(charInfo!=='' && nameInput.value!==''){
-//         connect()
-//         mainWindow.classList.add('none')
-//         chattingWindow.classList.remove('none')
-//     }
-//     else{
-//         alert('접속자명을 입력해 주세요')
-//     }
-// })
 const socket=io()
 const ALL_US=[]
 let player1=[]
@@ -228,7 +151,7 @@ let mine=''
 socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     gameStart.disabled=true
     let i=6
-    setCards()//카드 랜덤하게
+    setCards() //카드 랜덤하게
     let interval=setInterval(()=>{
         if(i>0){
             --i
@@ -292,7 +215,7 @@ startButton.addEventListener('click',()=>{
         connect()
         $('#window').css('border','none')
         $('#window').css('top','100px')
-
+        
         mainWindow.classList.add('none')
         chattingWindow.classList.remove('none')
         mapAndLogo()
@@ -313,7 +236,11 @@ function sendMessage(e){
     let message=chatInput.value
     let data={'name':charInfo.name,'user_id':MY_USER_ID,'msg':message}
     socket.emit('sendmessage',data)
-    
+    socket.emit('yorn',data)
+    // socket.on('asdf',(data)=>{
+    //     socket.emit('asdf',data)
+    // })   
+    // setCards()
 }
 
 
@@ -360,6 +287,7 @@ function setCards(){
         card[i].src=cards[arr[i]]
     }
 }
+
 for(let i=1;i<=30;i++){
     $('.game-window').append(`<img src="img/hidden-card.png" id=card${i} class=card>`)
     if(i%6===0){
@@ -428,6 +356,7 @@ socket.on('opencard',(data)=>{
     
 })
 socket.on('playerscore3',(data)=>{
+    console.log(player1,player2)
     if(data.userid===1){
         player1Score.innerText=data.score
         player1.score=data.score
@@ -444,23 +373,36 @@ socket.on('playerscore3',(data)=>{
     }
     scrollToBottom()
     let length=$('.opened').length
-    if(length===30){
+    if(length===4){
         if(player1.score>player2.score){
             $('#chat-window').append(`<div style="color:yellow">
             [server]:${player1.name}님이 승리했습니다.
             </div>`)
         }
         else if(player1.score<player2.score){
-            $('#chat-window').append(`<div>
+            $('#chat-window').append(`<div style="color:yellow">
             [server]:${player2.name}님이 승리했습니다.
             </div>`)
         }
         else{
-            $('#chat-window').append(`<div>
+            $('#chat-window').append(`<div style="color:yellow">
             [server]:무승부입니다.
             </div>`)
         }
+        $('#chat-window').append(`<div style="color:yellow">
+            [server]:다시 시작하시겠습니까?(y/n).
+            </div>`)
+            // chatForm.addEventListener('submit',(e)=>{
+            //     e.preventDefault()
+            //     let data={'user_id':mine.userid,'msg':chatInput.value}
+            //     socket.emit('yorn',data) 
+            // })
+        
         scrollToBottom()
+        //setCards()
+        for(let i=1;i<=30;i++){
+            $('#card'+{i}).attr("src",'img/hidden-card.png')
+        }
     }
 })
 
@@ -521,4 +463,8 @@ function scrollToBottom(){
 }
 const opened=document.getElementsByClassName('.opened')
 let aaa=0
+
+//게임중간에 dc
+//게임시작전에 dc
+//게임다 끝나면(누군가가 승리했다면)->서버의 내용 다 비우고->캐릭터선택창
 
