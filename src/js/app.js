@@ -236,11 +236,6 @@ function sendMessage(e){
     let message=chatInput.value
     let data={'name':charInfo.name,'user_id':MY_USER_ID,'msg':message}
     socket.emit('sendmessage',data)
-    socket.emit('yorn',data)
-    // socket.on('asdf',(data)=>{
-    //     socket.emit('asdf',data)
-    // })   
-    // setCards()
 }
 
 
@@ -260,6 +255,7 @@ function generateRandom(min,max){
 
 let arr=null
 socket.on('rancard',(data)=>{//랜덤한값 서버로부터 받아옴
+    console.log(data)
     arr=data
 })
 let cardall=''
@@ -373,7 +369,7 @@ socket.on('playerscore3',(data)=>{
     }
     scrollToBottom()
     let length=$('.opened').length
-    if(length===4){
+    if(length===2){
         if(player1.score>player2.score){
             $('#chat-window').append(`<div style="color:yellow">
             [server]:${player1.name}님이 승리했습니다.
@@ -388,20 +384,6 @@ socket.on('playerscore3',(data)=>{
             $('#chat-window').append(`<div style="color:yellow">
             [server]:무승부입니다.
             </div>`)
-        }
-        $('#chat-window').append(`<div style="color:yellow">
-            [server]:다시 시작하시겠습니까?(y/n).
-            </div>`)
-            // chatForm.addEventListener('submit',(e)=>{
-            //     e.preventDefault()
-            //     let data={'user_id':mine.userid,'msg':chatInput.value}
-            //     socket.emit('yorn',data) 
-            // })
-        
-        scrollToBottom()
-        //setCards()
-        for(let i=1;i<=30;i++){
-            $('#card'+{i}).attr("src",'img/hidden-card.png')
         }
     }
 })

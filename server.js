@@ -159,21 +159,8 @@ io.on("connection",function connect(socket,req){
             console.log(user_id)
             io.emit('dc',user_id)
         })
-        socket.on('yorn',(data)=>{
-            array.push(data.msg)
-            console.log(array)
-            if(array[0]==='y' && array[1]==='y'){
-                console.log(123)
-                let ran1=lottoNum()
-                // socket.emit('asdf',array)
-                // socket.on('asdf',(data)=>{
-                //     socket.emit('rancard',ran1)
-                // })
-
-            }
-        })
+        
     })
-    
     function sendUserId(user_id){
         if(user_id===1){
             MyTurn=true
