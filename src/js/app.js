@@ -72,7 +72,7 @@ function charClick(e){
 }
 
 const socket=io()
-const ALL_US=[]
+let ALL_US=[]
 let player1=[]
 let player2=[]
 
@@ -108,6 +108,7 @@ function connect(){
             charImg4.src=data.img
             charName4.innerHTML=data.name
         }
+        console.log(player1,player2)
 
     })
 }
@@ -369,7 +370,7 @@ socket.on('playerscore3',(data)=>{
     }
     scrollToBottom()
     let length=$('.opened').length
-    if(length===2){
+    if(length===30){
         if(player1.score>player2.score){
             $('#chat-window').append(`<div style="color:yellow">
             [server]:${player1.name}님이 승리했습니다.
@@ -385,9 +386,20 @@ socket.on('playerscore3',(data)=>{
             [server]:무승부입니다.
             </div>`)
         }
+        setTimeout(()=>{
+            socket.emit('init',MY_USER_ID)
+            window.location.reload()
+        },1000)
     }
 })
-
+socket.on('init',(data)=>{
+    console.log(123)
+    player1=[]
+    player2=[]
+    MY_USER_ID=null
+    ALL_US=[]
+    setCards()
+})
 socket.on('changeplayer',(data)=>{
     mine=data
     if(mine.userid===1 && mine.turn===false){
@@ -445,6 +457,15 @@ function scrollToBottom(){
 }
 const opened=document.getElementsByClassName('.opened')
 let aaa=0
+
+socket.on('dc',(data)=>{
+    player1=[]
+    player2=[]
+    MY_USER_ID=null
+    ALL_US=[]
+    setCards()
+    window.location.reload()
+})
 
 //게임중간에 dc
 //게임시작전에 dc

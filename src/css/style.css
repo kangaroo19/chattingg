@@ -344,7 +344,10 @@ img{
 #chat-input{
     width:400px;
 }
-
+#chatForm{
+    margin-left:28px;
+    margin-top:3px;
+}
 .entered-char-img{
     margin:auto 0;
     width:95px;

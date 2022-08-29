@@ -62,7 +62,8 @@ const PORT=process.env.PORT || 5005;
 
 
 server.listen(PORT,()=>console.log("server is running "+PORT))
-let ran=lottoNum()
+let ran
+console.log(ran)
 let user_id=0
 let ALL_US=[]
 let myid=null
@@ -76,7 +77,7 @@ let array=[]
 io.on("connection",function connect(socket,req){
     let score1=0
     let score2=0
-    
+    ran=lottoNum()
     socket.on('chatting',(data)=>{
         user_id++
         data.user_id=user_id
@@ -155,11 +156,26 @@ io.on("connection",function connect(socket,req){
             io.emit('opencard',data)
         })
         socket.on('disconnect',function(){
-            console.log('disconnected')
-            console.log(user_id)
+            user_id=0
+            ALL_US=[]
+            myid=null
+            myName=null
+            myImg=null
+            MyAu=false
+            MyTurn=false
             io.emit('dc',user_id)
         })
-        
+        socket.on('init',(data)=>{
+            console.log('init'+data)
+            user_id=0
+            ALL_US=[]
+            myid=null
+            myName=null
+            myImg=null
+            MyAu=false
+            MyTurn=false
+            socket.emit('init',user_id)
+        })
     })
     function sendUserId(user_id){
         if(user_id===1){
