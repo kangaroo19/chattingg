@@ -333,7 +333,7 @@ function matchCard(chosecard){
     let n=chosecard.length-1
     if(chosecard[n-1].cardname===chosecard[n].cardname && mine.turn===true){//짝 맞을때
         socket.emit('opencard',chosecard) //열려잇는카드 .opened클래스 추가하여 못누르게
-        mine.score=mine.score+10
+        mine.score=mine.score+20
         socket.emit('playerscore3',mine)
     }
     else if(chosecard[n-1].cardname!==chosecard[n].cardname){//안맞을때
