@@ -30,20 +30,32 @@ const body=document.querySelector("body");
 const array=['img/스포아.png','img/빨간달팽이.png','img/슬라임.png','img/리본돼지.png','img/주황버섯.png','img/초록버섯.png','img/파란버섯.png','img/뿔버섯.png']
 const array2=['img/스포아hit.png','img/빨간달팽이hit.png','img/슬라임hit.png','img/리본돼지hit.png','img/주황버섯hit.png','img/초록버섯hit.png','img/파란버섯hit.png','img/뿔버섯hit.png']
 const map=[
-            {'map':'img/커닝시티.PNG','name':'커닝시티','logo':'img/커닝시티로고.png','music':''},
-            {'map':'img/헤네시스.PNG','name':'헤네시스','logo':'img/헤네시스로고.png','music':''},
-            {'map':'img/페리온.PNG','name':'페리온','logo':'img/페리온로고.png','music':''},
-            {'map':'img/엘리니아.PNG','name':'엘리니아','logo':'img/엘리니아로고.png','music':''},
-            {'map':'img/리스항구.PNG','name':'리스항구','logo':'img/리스항구로고.png','music':''},
+            {'map':'img/커닝시티.PNG','name':'커닝시티','logo':'img/커닝시티로고.png','music':'mp3/커닝시티.mp3'},
+            {'map':'img/헤네시스.PNG','name':'헤네시스','logo':'img/헤네시스로고.png','music':'mp3/헤네시스.mp3'},
+            {'map':'img/페리온.PNG','name':'페리온','logo':'img/페리온로고.png','music':'mp3/페리온.mp3'},
+            {'map':'img/엘리니아.PNG','name':'엘리니아','logo':'img/엘리니아로고.png','music':'mp3/엘리니아.mp3'},
+            {'map':'img/리스항구.PNG','name':'리스항구','logo':'img/리스항구로고.png','music':'mp3/리스항구.mp3'},
         ]
 const logoimg=document.querySelector('#chatting-top-img')
+let audio=new Audio()
+const musicstart=document.querySelector('.musicstart')
 function mapAndLogo(){
     let ran=Math.floor(Math.random()*map.length)
     body.style.backgroundImage='url('+map[ran].map+')'
     logoimg.src=map[ran].logo
     $('#chatting-top-desc').html(map[ran].name)
+    audio=new Audio(map[ran].music)
 }
-
+$('.musicstart').on('click',()=>{
+    if(musicstart.innerText==="MUSIC"){
+        musicstart.innerText="STOP"
+        audio.play()
+    }
+    else{
+        musicstart.innerText="MUSIC"
+        audio.pause()
+    }
+})
 let websocket=null
 let MY_USER_ID=''
 let MY_NAME=''
@@ -173,7 +185,7 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
         }
         scrollToBottom()
 
-    },1000)
+    },100)
     firstchar.classList.add('border')
     MY_AU=true
     player1.turn=true
@@ -470,4 +482,5 @@ socket.on('dc',(data)=>{
 //게임중간에 dc
 //게임시작전에 dc
 //게임다 끝나면(누군가가 승리했다면)->서버의 내용 다 비우고->캐릭터선택창
+
 

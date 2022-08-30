@@ -12,9 +12,9 @@
 
 </head>
 <body>
-    <div id="window" >
+    <div id="window" class="animate__animated animate__backInUp">
         <div id="main-window">
-            <div class="title-container animate__animated animate__backInUp">
+            <div class="title-container animate__animated animate__backInUp animate__delay-1s">
                 <div class="top-title">
                     <div><img id="monstercard" src="img/몬스터카드.png" alt=""></div>
                     <div id="top-title-cont">MATCH CARD</div>
@@ -24,7 +24,7 @@
                     <div id="title-cont">같은그림찾기</div>
                 </div>
             </div>
-            <div class="char-container animate__animated animate__backInUp">
+            <div class="char-container animate__animated animate__backInUp animate__delay-2s">
                 <div class="wrapper">
                     <div class="char-desc" >캐릭터를 선택하고 이름을 정해주세요</div>
                 </div>
@@ -70,35 +70,39 @@
                 <div class="char-window">
                     <div class="entered-char" id="first-char">
                         <div class="entered-char-img">
-                            <img src="" alt="" id="char-img-1">
+                            <img src="img/레이스2.png" alt="" id="char-img-1">
                         </div>
                         <div class="entered-char-name" id="char-name-1"></div>
                         <div class="entered-char-score" id="player1-score">준비중</div>
                     </div>
                     <div class="entered-char" id="second-char">
                         <div class="entered-char-img">
-                            <img src="" alt="" id="char-img-2">
+                            <img src="img/레이스2.png" alt="" id="char-img-2">
                         </div>
                         <div class="entered-char-name" id="char-name-2"></div>
                         <div class="entered-char-score" id="player2-score">준비중</div>
                     </div>
                     <div class="entered-char" id="third-char">
                         <div class="entered-char-img">
-                            <img src="" alt="" id="char-img-3">
+                            <img src="img/레이스2.png" alt="" id="char-img-3">
                         </div>
                         <div class="entered-char-name" id="char-name-3"></div>
                         <div class="entered-char-score">관전</div>
                     </div>
                     <div class="entered-char" id="fourth-char">
                         <div class="entered-char-img">
-                            <img src="" alt="" id="char-img-4">
+                            <img src="img/레이스2.png" alt="" id="char-img-4">
                         </div>
                         <div class="entered-char-name" id="char-name-4"></div>
                         <div class="entered-char-score">관전</div>
                     </div>
 
                 </div>
-                <button class="gamestart">Ready</button>
+                <div class="middle-container">
+                    <button class="musicstart">MUSIC</button>
+                    <button class="gamestart">Ready</button>
+
+                </div>
                 <div class="chat-window-container">
                     <div id="chat-window"></div>
                     <div id="chat-input-container">
@@ -113,6 +117,7 @@
            </div>
         </div>
     </div>
+   
     <div class="none alert">
         <div id="alert-main">
             <div id="main-img"><img src="img/표지판.png" alt=""><div>경고표지판</div></div>
