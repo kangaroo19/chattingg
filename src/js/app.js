@@ -185,7 +185,7 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
         }
         scrollToBottom()
 
-    },100)
+    },1000)
     firstchar.classList.add('border')
     MY_AU=true
     player1.turn=true
