@@ -161,6 +161,7 @@ socket.on('pp1',(data)=>{
 
 })
 let mine=''
+let cnt
 socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
     gameStart.disabled=true
     let i=6
@@ -184,7 +185,8 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
             }
         }
         scrollToBottom()
-
+        cnt=i
+        console.log(cnt)
     },1000)
     firstchar.classList.add('border')
     MY_AU=true
@@ -310,7 +312,7 @@ const secondchar=document.getElementById('second-char')
 let chosecard=[]
 let a=''
 $('.card').on('click',(e)=>{
-    if(player1.authority===true && player2.authority===true){
+    if(player1.authority===true && player2.authority===true && cnt===0){
         if(mine.turn===true){
             let cardId=e.target.id
             let cardTarget=e.target
@@ -382,7 +384,7 @@ socket.on('playerscore3',(data)=>{
     }
     scrollToBottom()
     let length=$('.opened').length
-    if(length===30){
+    if(length===2){
         if(player1.score>player2.score){
             $('#chat-window').append(`<div style="color:yellow">
             [server]:${player1.name}님이 승리했습니다.
@@ -398,10 +400,14 @@ socket.on('playerscore3',(data)=>{
             [server]:무승부입니다.
             </div>`)
         }
+        $('#chat-window').append(`<div style="color:yellow">
+            [server]:5초 후 종료됩니다.
+            </div>`)
+        scrollToBottom()
         setTimeout(()=>{
             socket.emit('init',MY_USER_ID)
             window.location.reload()
-        },1000)
+        },5000)
     }
 })
 socket.on('init',(data)=>{
