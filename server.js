@@ -63,8 +63,7 @@ const PORT=process.env.PORT || 5005;
 
 
 server.listen(PORT,()=>console.log("server is running "+PORT))
-let ran
-console.log(ran)
+let ran=lottoNum()
 let user_id=0
 let ALL_US=[]
 let myid=null
