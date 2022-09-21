@@ -2,11 +2,11 @@
 ![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)![mc](https://user-images.githubusercontent.com/86513078/191253512-5f2cf5a6-2e00-40a1-a9e2-d0231bffefd6.png)
 # 같은그림찾기
 
-## 개요
+## 1.개요
 어릴 때 재미있게 플레이하던 '메이플스토리'라는 게임 안에 있는 미니게임인 채팅기능을 포함한 같은그림찾기게임을 1vs1 온라인으로 할 수 있게 웹 상에 구현하였습니다.
 
 
-## 미리보기
+## 2.미리보기
 
 ![1](https://user-images.githubusercontent.com/86513078/191254206-1a77524e-98c1-49ed-b6c9-7fbfa3691fed.PNG)
 
@@ -20,6 +20,8 @@
 ![3](https://user-images.githubusercontent.com/86513078/191255403-93275653-9366-4660-8f1b-560b1dc6ee80.PNG)
 
 5초간의 카운트 후 본격적으로 게임이 시작됩니다 카드를 맞추면 +20,맞추는 데 실패하면 -10 방식으로 점수가 올라갑니다.
+
+## 3.구조
 
 
 ## 기술스택
