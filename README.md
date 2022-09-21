@@ -25,6 +25,10 @@
 ##기술스택
 
 -Vanila JS
+
 -Node.js
+
 -HTML
+
 -CSS
+
