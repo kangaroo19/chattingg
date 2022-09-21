@@ -319,8 +319,7 @@ $('.card').on('click',(e)=>{
             a=cardId
             let cardNumber=Number(e.target.id.substring(4))
             if($(e.target).hasClass('opened')) return;
-            //e.target.src=cards[arr[cardNumber-1]]
-            //console.log(e.target)
+            
             let cardName=cards[arr[cardNumber-1]]
             chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
             socket.emit('card',chosecard)
@@ -331,9 +330,7 @@ $('.card').on('click',(e)=>{
         }
 
         
-        // if(chosecard.length%2===0){
-        //     matchCard(chosecard)        
-        // }
+      
     }
 })
 socket.on('card1',(data)=>{ 
