@@ -22,9 +22,10 @@
 5초간의 카운트 후 본격적으로 게임이 시작됩니다 카드를 맞추면 +20,맞추는 데 실패하면 -10 방식으로 점수가 올라갑니다.
 
 
-##기술스택
+## 기술스택
 
--Vanila JS
+ <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
+
 
 -Node.js
 
