@@ -187,7 +187,6 @@ io.on("connection",function connect(socket,req){
         let data={'user_id':user_id,'name':myName,'img':myImg,'authority':MyAu,'turn':MyTurn}
         socket.emit('aaa',data)
     }
-   
 })
 function lottoNum(){
     let lotto=[]
@@ -211,4 +210,5 @@ function lottoNum(){
 //뿔버섯 레디버튼 누르고 리본돼지 레디버튼 누르면 잘 안됨
 //myid부분이 잘못된듯
 //client 부분에서 all_us 활용해볼것
+
 
