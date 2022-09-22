@@ -33,37 +33,22 @@
 ## 4.코드
 ### 서버접속
 ```JS
-socket.on('chatting',(data)=>{
-        user_id++
-        data.user_id=user_id
-        myid=user_id //현재접속한 사용자의 아이디(고유한 값)저장
-        myName=data.name //현재접속한 사용자의 이름 저장
-        myImg=data.img //현재접속한 사용자의 캐릭터이미지 저장
-        sendUserId(user_id) //현재접속한 사용자의 정보 클라이언트로 보냄
-        io.emit('myuserid',data)
-        ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false,'turn':false,'score':0,'chosecard':[],'count':0})
-        ALL_US.forEach((element,index)=>{
-            io.emit('sendname',element)
-        })
-.
-.
-.
-} 
-```
-ALL_US는 접속한 사용자의 모든 정보 가지고있는 배열 이 또한 클라이언트 측으로 보냄
-sendUserId()를 통해 클라이언트측으로 보낸 정보는 클라이언트측에서 connection 함수에서 받음
-```JS
-function connect(){//서버측에서 받은 정보 클라이언트측에서 저장
-    socket.on('aaa',(data)=>{
-        MY_NAME=data.name 
-        My_IMG=data.img
-        MY_USER_ID=data.user_id
-        MY_TURN=data.turn
-    })
-.
-.
-.
-}
+startButton.addEventListener('click',()=>{
+    charInfo.name=nameInput.value
+    if(charInfo!=='' && nameInput.value!==''){ 
+        connect() //사용자정보 서버로 보내고 접속
+        $('#window').css('border','none')
+        $('#window').css('top','100px')
+        
+        mainWindow.classList.add('none')
+        chattingWindow.classList.remove('none')
+        mapAndLogo() //랜덤배경이미지 
+    }
+    else if(charInfo===''&&nameInput.value===''){ //캐릭터이름 정하지 않으면 경고창 출력
+        $('.alert').removeClass('none')
+        $('#desc').html("캐릭터를 선택하고 이름을 정해주세요.");
+    }
+})
 ```
 ## 기술스택
 
