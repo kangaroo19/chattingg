@@ -40,9 +40,9 @@ startButton.addEventListener('click',()=>{
         $('#window').css('border','none')
         $('#window').css('top','100px')
         
-        mainWindow.classList.add('none')
-        chattingWindow.classList.remove('none')
-        mapAndLogo() //랜덤배경이미지 
+        mainWindow.classList.add('none') //캐릭터 선택창 사라지고
+        chattingWindow.classList.remove('none') //게임화면 나옴
+        mapAndLogo() //랜덤배경이미지 설정
     }
     else if(charInfo===''&&nameInput.value===''){ //캐릭터이름 정하지 않으면 경고창 출력
         $('.alert').removeClass('none')
@@ -50,6 +50,23 @@ startButton.addEventListener('click',()=>{
     }
 })
 ```
+```JS
+//위에서 connect함수 통해 보낸 정보 받음
+socket.on('chatting',(data)=>{
+        user_id++
+        data.user_id=user_id
+        myid=user_id //현재접속한 사용자의 아이디(고유한 값)저장
+        myName=data.name //현재접속한 사용자의 이름 저장
+        myImg=data.img //현재접속한 사용자의 캐릭터이미지 저장
+        sendUserId(user_id) //현재접속한 사용자의 정보 클라이언트로 보냄
+        io.emit('myuserid',data)
+        //io.emit('myuserid1',data)
+        ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false,'turn':false,'score':0,'chosecard':[],'count':0})
+        ALL_US.forEach((element,index)=>{
+            io.emit('sendname',element)
+        })
+```
+All_US는 접속한 모든 사용자의 정보 가지고 있는 배열
 ## 기술스택
 
  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
