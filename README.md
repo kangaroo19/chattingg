@@ -31,7 +31,7 @@
 <img src="https://user-images.githubusercontent.com/86513078/191548363-eb34832c-2a6d-4ecd-b87f-dd70befffadd.PNG" width="400" height="600"/>
 
 ## 4.코드
-### 서버접속
+### 서버접속(클라이언트)
 ```JS
 startButton.addEventListener('click',()=>{
     charInfo.name=nameInput.value
@@ -50,6 +50,7 @@ startButton.addEventListener('click',()=>{
     }
 })
 ```
+### 서버접속(서버)
 ```JS
 //위에서 connect함수 통해 보낸 정보 받음
 socket.on('chatting',(data)=>{
