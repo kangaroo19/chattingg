@@ -30,6 +30,41 @@
 
 <img src="https://user-images.githubusercontent.com/86513078/191548363-eb34832c-2a6d-4ecd-b87f-dd70befffadd.PNG" width="400" height="600"/>
 
+## 4.코드
+### 서버접속
+```JS
+socket.on('chatting',(data)=>{
+        user_id++
+        data.user_id=user_id
+        myid=user_id //현재접속한 사용자의 아이디(고유한 값)저장
+        myName=data.name //현재접속한 사용자의 이름 저장
+        myImg=data.img //현재접속한 사용자의 캐릭터이미지 저장
+        sendUserId(user_id) //현재접속한 사용자의 정보 클라이언트로 보냄
+        io.emit('myuserid',data)
+        ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false,'turn':false,'score':0,'chosecard':[],'count':0})
+        ALL_US.forEach((element,index)=>{
+            io.emit('sendname',element)
+        })
+.
+.
+.
+} 
+```
+ALL_US는 접속한 사용자의 모든 정보 가지고있는 배열 이 또한 클라이언트 측으로 보냄
+sendUserId()를 통해 클라이언트측으로 보낸 정보는 클라이언트측에서 connection 함수에서 받음
+```JS
+function connect(){//서버측에서 받은 정보 클라이언트측에서 저장
+    socket.on('aaa',(data)=>{
+        MY_NAME=data.name 
+        My_IMG=data.img
+        MY_USER_ID=data.user_id
+        MY_TURN=data.turn
+    })
+.
+.
+.
+}
+```
 ## 기술스택
 
  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
