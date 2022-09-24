@@ -3,8 +3,12 @@
 
 
 
+[![Video Label](http://img.youtube.com/vi/59USvjy2toI/0.jpg)](https://youtu.be/59USvjy2toI)
+
+
+
+
 ## 1.개요
-(동영상 녹화해서 넣기)
 어릴 때 재미있게 플레이하던 '메이플스토리'라는 게임 안에 있는 미니게임인 같은그림찾기게임을 채팅기능을 포함해 1vs1 온라인으로 할 수 있게 웹 상에 구현하였습니다.
 
 
