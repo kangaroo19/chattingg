@@ -61,13 +61,19 @@ socket.on('chatting',(data)=>{
         myImg=data.img //현재접속한 사용자의 캐릭터이미지 저장
         sendUserId(user_id) //현재접속한 사용자의 정보 클라이언트로 보냄
         io.emit('myuserid',data)
-        //io.emit('myuserid1',data)
         ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false,'turn':false,'score':0,'chosecard':[],'count':0})
         ALL_US.forEach((element,index)=>{
             io.emit('sendname',element)
         })
 ```
 All_US는 접속한 모든 사용자의 정보 가지고 있는 배열
+#### 사용자 정보(객체)
+- user.name:사용자 이름 저장
+- user.img:사용자가 선택한 캐릭터의 이미지 저장
+- user.user_id:사용자 고유한 값인 저장
+- user.authority:사용자권한,기본값은 false이고 준비버튼 누르면 true로 변함
+- user.turn:기본값은 false이고 처음 게임이 시작되면 플레이어1은 true,플레이어2는 false로 변한다 true 상태 일때만 카드 선택가능하고 false일때 카드 선택하면 경고창 출력됨,플레이어가 카드 선택하다가 짝이 맞지 않으면 false상태로 바뀌고 다음플레이어가 true 상태로 변함,짝이 맞으면 그대로 진행
+- user.score:사용자 점수 저장
 ## 기술스택
 
  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
