@@ -66,7 +66,6 @@ let charInfo=''
 let curimg={'charid':null,'target':null,'img':null}
 function charClick(e){
     if(curimg.charid!==null){
-        console.log(curimg.target)
         curimg.target.childNodes[0].src=curimg.img
     }
     curimg=e.childNodes[0]
@@ -185,7 +184,6 @@ socket.on('start',(data)=>{//player1과 player2가 준비완료하면 실행
         }
         scrollToBottom()
         cnt=i
-        console.log(cnt)
     },1000)
     firstchar.classList.add('border')
     MY_AU=true
@@ -269,7 +267,6 @@ function generateRandom(min,max){
 
 let arr=null
 socket.on('rancard',(data)=>{//랜덤한값 서버로부터 받아옴
-    console.log(data)
     arr=data
 })
 let cardall=''
@@ -312,6 +309,8 @@ let chosecard=[]
 let a=''
 $('.card').on('click',(e)=>{
     if(player1.authority===true && player2.authority===true && cnt===0){
+        console.log(player1.chosecard)
+        console.log(chosecard)
         if(mine.turn===true){
             let cardId=e.target.id
             let cardTarget=e.target
@@ -326,10 +325,7 @@ $('.card').on('click',(e)=>{
         else if(mine.turn===false){
             $('.alert').removeClass('none')
             $('#desc').html("당신차례가 아닙니다.");
-        }
-
-        
-      
+        }  
     }
 })
 socket.on('card1',(data)=>{ 
@@ -363,7 +359,6 @@ socket.on('opencard',(data)=>{
     
 })
 socket.on('playerscore3',(data)=>{
-    console.log(player1,player2)
     if(data.userid===1){
         player1Score.innerText=data.score
         player1.score=data.score
@@ -380,7 +375,7 @@ socket.on('playerscore3',(data)=>{
     }
     scrollToBottom()
     let length=$('.opened').length
-    if(length===2){
+    if(length===30){
         if(player1.score>player2.score){
             $('#chat-window').append(`<div style="color:yellow">
             [server]:${player1.name}님이 승리했습니다.
@@ -465,7 +460,7 @@ function wait(sec) {
     }
 }
 
-function scrollToBottom(){
+function scrollToBottom(){ //채팅창에 채팅 올라가면 채팅화면 맨 밑으로 유지
     let bottom=chatWindow.scrollHeight
     chatWindow.scrollTo(0,bottom)
 }
@@ -481,8 +476,6 @@ socket.on('dc',(data)=>{
     window.location.reload()
 })
 
-//게임중간에 dc
-//게임시작전에 dc
-//게임다 끝나면(누군가가 승리했다면)->서버의 내용 다 비우고->캐릭터선택창
+
 
 
