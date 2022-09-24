@@ -182,7 +182,7 @@ socket.on('init',(data)=>{
             MyTurn=false
             socket.emit('init',user_id)
         })
-        ```
+```
 모든 정보 초기화
 
 ### 게임 도중에 disconeect
@@ -198,7 +198,7 @@ socket.on('disconnect',function(){
             MyTurn=false
             io.emit('dc',user_id)
         })
-        ```
+```
 모든 정보 초기화       
 #### 클라이언트
 ```JS
