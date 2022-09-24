@@ -309,21 +309,20 @@ let chosecard=[]
 let a=''
 $('.card').on('click',(e)=>{
     if(player1.authority===true && player2.authority===true && cnt===0){
-        console.log(player1.chosecard)
-        console.log(chosecard)
+        //cnt==0은 게임시작 카운트(5초)될때 카드선택 못하게 하기위함
         if(mine.turn===true){
             let cardId=e.target.id
             let cardTarget=e.target
-            a=cardId
+            //a=cardId
             let cardNumber=Number(e.target.id.substring(4))
             if($(e.target).hasClass('opened')) return;
             
             let cardName=cards[arr[cardNumber-1]]
             chosecard.push({'cardid':cardId,'cardname':cardName,'cardnumber':cardNumber,'cardtarget':cardTarget})
-            socket.emit('card',chosecard)
+            socket.emit('card',chosecard) //서버로 클릭한 카드 보냄
         }
         else if(mine.turn===false){
-            $('.alert').removeClass('none')
+            $('.alert').removeClass('none') //경고창 출력
             $('#desc').html("당신차례가 아닙니다.");
         }  
     }
@@ -402,7 +401,6 @@ socket.on('playerscore3',(data)=>{
     }
 })
 socket.on('init',(data)=>{
-    console.log(123)
     player1=[]
     player2=[]
     MY_USER_ID=null
@@ -436,7 +434,7 @@ socket.on('score',(data)=>{
         firstchar.classList.remove('border')
         secondchar.classList.add('border')
         player1Score.innerText=data.score
-        $('#chat-window').append(`<div>
+        $('#chat-window').append(`<div style="color:yellow">
         [server]:${data.name}님이 틀렸습니다
         </div>`)
     }
@@ -444,7 +442,7 @@ socket.on('score',(data)=>{
         firstchar.classList.add('border')
         secondchar.classList.remove('border')
         player2Score.innerText=data.score
-        $('#chat-window').append(`<div>
+        $('#chat-window').append(`<div style="color:yellow">
         [server]:${data.name}님이 틀렸습니다
         </div>`)
     }

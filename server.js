@@ -116,7 +116,6 @@ io.on("connection",function connect(socket,req){
             io.emit('dc',user_id)
         })
         socket.on('init',(data)=>{
-            console.log('init'+data)
             user_id=0
             ALL_US=[]
             myid=null
