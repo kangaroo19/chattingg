@@ -90,7 +90,6 @@ let player2=[]
 
 function connect(){
     socket.on('aaa',(data)=>{
-        
         MY_NAME=data.name
         My_IMG=data.img
         MY_USER_ID=data.user_id
@@ -233,7 +232,7 @@ startButton.addEventListener('click',()=>{
         
         mainWindow.classList.add('none')
         chattingWindow.classList.remove('none')
-        mapAndLogo()
+        mapAndLogo() //랜덤배경이미지 
     }
     else if(charInfo===''&&nameInput.value===''){
         $('.alert').removeClass('none')

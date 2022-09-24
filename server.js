@@ -30,21 +30,19 @@ let array=[]
 io.on("connection",function connect(socket,req){
     let score1=0
     let score2=0
-    ran=lottoNum()
+    ran=lottoNum()//크기 30의 배열로 0~29까지의 중복없는 랜덤한 수 반환하는 함수
     socket.on('chatting',(data)=>{
         user_id++
         data.user_id=user_id
-        myid=user_id
-        myName=data.name
-        myImg=data.img
-        sendUserId(user_id)
+        myid=user_id //현재접속한 사용자의 아이디(고유한 값)저장
+        myName=data.name //현재접속한 사용자의 이름 저장
+        myImg=data.img //현재접속한 사용자의 캐릭터이미지 저장
+        sendUserId(user_id) //현재접속한 사용자의 정보 클라이언트로 보냄
         io.emit('myuserid',data)
-        io.emit('myuserid1',data)
-
+        //io.emit('myuserid1',data)
         ALL_US.push({'name':data.name,'img':data.img,'user_id':data.user_id,'authority':false,'turn':false,'score':0,'chosecard':[],'count':0})
         ALL_US.forEach((element,index)=>{
             io.emit('sendname',element)
-            
         })
         
         socket.on('sendmessage',(data)=>{
