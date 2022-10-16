@@ -473,7 +473,3 @@ socket.on('dc',(data)=>{
     setCards()
     window.location.reload()
 })
-
-
-
-
