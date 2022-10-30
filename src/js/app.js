@@ -346,9 +346,8 @@ function matchCard(chosecard){
             $('#'+chosecard[n-1].cardid).attr("src",'img/hidden-card.png')
             $('#'+chosecard[n].cardid).attr("src",'img/hidden-card.png')
         },1000)
-        
         socket.emit('changeplayer',mine)//턴 교체
-        return 
+        return
     }
 }
 socket.on('opencard',(data)=>{
