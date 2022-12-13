@@ -11,7 +11,7 @@ const socketIO=require("socket.io")
 const io=socketIO(server)
 
 app.use(express.static(path.join(__dirname,"src")))
-const PORT=process.env.PORT || 5005;
+const PORT=process.env.PORT || 8001;
 
 
 
