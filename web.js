@@ -1,3 +1,5 @@
+//소스트리에서 커밋 후 푸시해야 변경 반영됨
+
 
 const { count } = require("console")
 const express = require("express") 
@@ -30,7 +32,8 @@ let array=[]
 io.on("connection",function connect(socket,req){
     let score1=0
     let score2=0
-    ran=lottoNum()//크기 30의 배열로 0~29까지의 중복없는 랜덤한 수 반환하는 함수
+    console.group(ran)
+    // ran=lottoNum()//크기 30의 배열로 0~29까지의 중복없는 랜덤한 수 반환하는 함수
     socket.on('chatting',(data)=>{
         user_id++
         data.user_id=user_id
@@ -74,7 +77,6 @@ io.on("connection",function connect(socket,req){
         socket.emit('aa',data)
         
         socket.on('card',(data)=>{
-            
             io.emit('card1',data)
         })
        
