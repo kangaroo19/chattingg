@@ -63,7 +63,7 @@ io.on("connection",function connect(socket,req){
             else{
                 ALL_US[1].user_id=data.user_id
                 ALL_US[1].authority=true
-            }
+            }//
             io.emit('p1',data)
             if(ALL_US[0].authority===true && ALL_US[1].authority===true){
                 io.emit('start',ALL_US)
