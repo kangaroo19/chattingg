@@ -19,6 +19,7 @@ const PORT=process.env.PORT || 8001;
 
 server.listen(PORT,()=>console.log("server is running "+PORT))
 let ran=lottoNum()
+console.log(ran)
 let user_id=0
 let ALL_US=[]
 let myid=null
@@ -32,7 +33,7 @@ let array=[]
 io.on("connection",function connect(socket,req){
     let score1=0
     let score2=0
-    console.group(ran)
+    // console.group(ran)
     // ran=lottoNum()//크기 30의 배열로 0~29까지의 중복없는 랜덤한 수 반환하는 함수
     socket.on('chatting',(data)=>{
         user_id++
