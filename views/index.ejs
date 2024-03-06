@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="3jR5QsplMg83vYuQ3gsYFzreOL28PpG68QpH70l0k6w" />
+    <meta name="title" content="메이플스토리 같은그림찾기 게임">
+    <meta name="description" content="1vs1 채팅을 포함한 메이플스토리 같은그림찾기 게임입니다">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/몬스터카드.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>MATCHCARD</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div id="window" class="animate__animated animate__backInUp">
+        <div id="main-window">
+            <div class="title-container animate__animated animate__backInUp animate__delay-1s">
+                <div class="top-title">
+                    <div><img id="monstercard" src="img/몬스터카드.png" alt=""></div>
+                    <div id="top-title-cont">MATCH CARD</div>
+                </div>
+                <div class="main-title">
+                    <div id="title-img"><img src="img/cardgame.gif" alt=""></div>
+                    <div id="title-cont">같은그림찾기</div>
+                </div>
+            </div>
+            <div class="char-container animate__animated animate__backInUp animate__delay-2s">
+                <div class="wrapper">
+                    <div class="char-desc" >캐릭터를 선택하고 이름을 정해주세요</div>
+                </div>
+                    <div class="char-select-name">
+                        <div class="char-select">
+                            <div class="first-row">
+                                <div class="char" id="char1" onclick="charClick(this)"><img src="img/스포아.png" alt=""></div>
+                                <div class="char" id="char2" onclick="charClick(this)"><img src="img/빨간달팽이.png" alt=""></div>
+                                <div class="char" id="char3" onclick="charClick(this)"><img src="img/슬라임.png" alt=""></div>
+                                <div class="char" id="char4" onclick="charClick(this)"><img src="img/리본돼지.png" alt=""></div>
+                            </div>
+                            <div class="second-row">
+                                <div class="char" id="char5" onclick="charClick(this)"><img src="img/주황버섯.png" alt=""></div>
+                                <div class="char" id="char6" onclick="charClick(this)"><img src="img/초록버섯.png" alt=""></div>
+                                <div class="char" id="char7" onclick="charClick(this)"><img src="img/파란버섯.png" alt=""></div>
+                                <div class="char" id="char8" onclick="charClick(this)"><img src="img/뿔버섯.png" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="char-name">
+                            <input id="nameinput" autocomplete='off' type="text" maxlength='7' placeholder="이름을 입력해주세요">
+                            <div id="charinfo" class="none">
+                                <div id="charinfo-name">스포아</div>
+                                <div id="charinfo-info">
+                                    자그마한 몬스터로 풀숲 주변에서 주로 발견된다. 저레벨의 몬스터 치고 비교적 속도가 빠르지만, 익숙해지면 초보자도 금방 사냥할 수 있다. 얼핏 보면 주황버섯과 비슷하게 보이기도 하지만 훨씬 작은 몸집을 가지고 있으며, 주황버섯에 비해 얼굴도 훨씬 심술궂게 생겼다. 버섯의 포자를 퍼트리고 다니는데, 스포아야말로 메이플 월드에 버섯몬스터가 늘어나는 주요 원인이기도 하다.
+                                </div>
+                            </div>
+                            <button id="startbutton">START!!</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div id="chatting-window" class="none">
+            <div class="chatting-top-container">
+                <img id="chatting-top-img" src="" alt="">
+                <div id="chatting-top-desc">test</div>
+            </div>
+            <div class="chatting-container">
+            <div class="game-window"> 
+
+            </div>
+            <div class="char-chatting-window">
+                <div class="char-window">
+                    <div class="entered-char" id="first-char">
+                        <div class="entered-char-img">
+                            <img src="img/레이스2.png" alt="" id="char-img-1">
+                        </div>
+                        <div class="entered-char-name" id="char-name-1"></div>
+                        <div class="entered-char-score" id="player1-score">준비중</div>
+                    </div>
+                    <div class="entered-char" id="second-char">
+                        <div class="entered-char-img">
+                            <img src="img/레이스2.png" alt="" id="char-img-2">
+                        </div>
+                        <div class="entered-char-name" id="char-name-2"></div>
+                        <div class="entered-char-score" id="player2-score">준비중</div>
+                    </div>
+                    <div class="entered-char" id="third-char">
+                        <div class="entered-char-img">
+                            <img src="img/레이스2.png" alt="" id="char-img-3">
+                        </div>
+                        <div class="entered-char-name" id="char-name-3"></div>
+                        <div class="entered-char-score">관전</div>
+                    </div>
+                    <div class="entered-char" id="fourth-char">
+                        <div class="entered-char-img">
+                            <img src="img/레이스2.png" alt="" id="char-img-4">
+                        </div>
+                        <div class="entered-char-name" id="char-name-4"></div>
+                        <div class="entered-char-score">관전</div>
+                    </div>
+
+                </div>
+                <div class="middle-container">
+                    <button class="musicstart">MUSIC</button>
+                    <button class="gamestart">Ready</button>
+
+                </div>
+                <div class="chat-window-container">
+                    <div id="chat-window"></div>
+                    <div id="chat-input-container">
+                        <form id="chatForm">
+                            <input type="text" autocomplete='off' required
+                            placeholder="send message" id="chat-input" maxlength='30'>
+                            <!-- <input type="button" id="chat-input-send" value="전송"> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+   
+    <div class="none alert">
+        <div id="alert-main">
+            <div id="main-img"><img src="img/표지판.png" alt=""><div>경고표지판</div></div>
+            <div id="main-desc"><div id="desc"></div></div>
+        </div>
+        <div id="alert-sub">
+            <button class="none" id="alertbutton2">취소</button>
+            <button id="alertbutton">확인</button>
+        </div>
+    </div>
+    
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="../src/js/app.js"></script>
+</body>
+</html>
+<!--  -->
+<!-- 수정사항 있을시
+터미널에 heroku login으로 로그인
+git push heroku main으로 디플로이 -->
